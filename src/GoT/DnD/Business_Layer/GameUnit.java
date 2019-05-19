@@ -17,6 +17,8 @@ public abstract class GameUnit {
         this.position = new Integer[2];
     }
 
+    public abstract void gameTick();
+
     public Integer getCurrHP() {
         return currHP;
     }
