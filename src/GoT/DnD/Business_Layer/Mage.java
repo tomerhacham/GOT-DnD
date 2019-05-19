@@ -19,10 +19,13 @@ public class Mage extends Player {
     }
 
     @Override
-    void levelUp(){
-        manaPool = manaPool + (25 * level);
-        currMana = Math.min(currMana + (manaPool/4), manaPool);
-        spellPower = spellPower + (10 * level);
+    void levelUp() {
+        if (this.isLevelUp()) {
+            this.levelUpIsComing();
+            manaPool = manaPool + (25 * level);
+            currMana = Math.min(currMana + (manaPool / 4), manaPool);
+            spellPower = spellPower + (10 * level);
+        }
     }
 
     @Override
