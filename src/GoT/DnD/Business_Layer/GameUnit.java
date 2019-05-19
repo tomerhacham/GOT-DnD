@@ -1,12 +1,12 @@
 package GoT.DnD.Business_Layer;
 
 public abstract class GameUnit {
-    public String name;
-    public Integer hp;              //Health Pool
-    public Integer currHP;          //Current Health
-    public Integer ap;              //Attacking Points
-    public Integer dp;              //Defense Points
-    public Integer[] position;
+    protected String name;
+    protected Integer hp;              //Health Pool
+    protected Integer currHP;          //Current Health
+    protected Integer ap;              //Attacking Points
+    protected Integer dp;              //Defense Points
+    protected Integer[] position;
 
     public GameUnit(String name, Integer hp, Integer currHP, Integer ap, Integer dp, Integer[] position) {
         this.name = name;
