@@ -24,9 +24,9 @@ public class Warrior extends Player {
         if (remaining > 0){
             //@TODO generate an appropriate error message.
         }
-        currHP = currHP + (2 * dp);
-        if (currHP > hp){
-            currHP = hp;
+        else {
+            remaining = cooldown;
+            currHP = Math.min(currHP + (2 * dp), hp);
         }
     }
 
