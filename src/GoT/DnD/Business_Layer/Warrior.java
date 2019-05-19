@@ -4,13 +4,14 @@ public class Warrior extends Player {
     private Integer cooldown;
     private Integer remaining;
 
-    public Warrior(String name, Integer hp, Integer currHP, Integer ap, Integer dp, Integer[] position, Integer xp, Integer level, Integer cooldown){
+    public Warrior(String name, Integer hp, Integer currHP, Integer ap, Integer dp, Integer[] position, Integer cooldown){
         super(name, hp, currHP, ap, dp, position);
         this.cooldown = cooldown;
         this.remaining = 0;
     }
 
-    private void levelUp(){
+    @Override
+    void levelUp(){
         if (this.isLevelUp()) {
             this.levelUpIsComing();
             remaining = 0;
@@ -22,7 +23,7 @@ public class Warrior extends Player {
     @Override
     void castSpecialAbility() {
         if (remaining > 0){
-            //@TODO generate an appropriate error message.
+            //@TODO: Generate an appropriate error message.
         }
         else {
             remaining = cooldown;
