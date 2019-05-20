@@ -36,7 +36,7 @@ public class Mage extends Player {
        else {
            currMana = currMana - cost;
            Integer hits = 0;
-           while (hits < hitTimes /*range(enemy, player)*/){
+           while (hits < hitTimes && ){
                //@TODO: Implement while hits < hit times ∧ ∃ enemy s.t. range(enemy, player) < range do...
 
            }
