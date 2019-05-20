@@ -27,7 +27,9 @@ public class Board {
         }
     }
 
-
+    public LinkedList<GameUnit> getGameUnits() {
+        return GameUnits;
+    }
 }
 
 
