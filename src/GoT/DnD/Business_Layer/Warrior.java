@@ -15,8 +15,8 @@ public class Warrior extends Player {
         if (this.isLevelUp()) {
             this.levelUpIsComing();
             remaining = 0;
-            hp = hp + (5 * level);
-            dp = dp + level;
+            setHp(getHp() + (5 * getLevel()));
+            setDp(getDp() + getLevel());
         }
     }
     
@@ -27,7 +27,7 @@ public class Warrior extends Player {
         }
         else {
             remaining = cooldown;
-            currHP = Math.min(currHP + (2 * dp), hp);
+            setCurrHP(Math.min(getCurrHP() + (2 * getDp()), getHp()));
         }
     }
 

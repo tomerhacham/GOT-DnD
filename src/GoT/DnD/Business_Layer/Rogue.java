@@ -10,14 +10,12 @@ public class Rogue extends Player {
         this.currEnergy = 100;
     }
 
-
     @Override
     void levelUp() {
         if (this.isLevelUp()){
             currEnergy = 100;
-            ap = ap + (3 * level);
+            setAp(getAp() + (3 * getLevel()));
         }
-
     }
 
     @Override
@@ -34,5 +32,22 @@ public class Rogue extends Player {
     @Override
     public void gameTick() {
         currEnergy = Math.min(currEnergy + 10, 100);
+    }
+
+    //Getters & setters
+    public Integer getCost() {
+        return cost;
+    }
+
+    public void setCost(Integer cost) {
+        this.cost = cost;
+    }
+
+    public Integer getCurrEnergy() {
+        return currEnergy;
+    }
+
+    public void setCurrEnergy(Integer currEnergy) {
+        this.currEnergy = currEnergy;
     }
 }

@@ -1,8 +1,9 @@
 package GoT.DnD.Business_Layer;
 
 public abstract class Player extends GameUnit {
-    protected Integer level;      //Player's level
-    protected Integer xp;         //Experience
+    private Integer level;      //Player's level
+    private Integer xp;         //Experience
+
 
     public Player (String name, Integer hp, Integer currHP, Integer ap, Integer dp, Integer[] position){
         super(name, hp, currHP, ap, dp, position);
@@ -18,18 +19,19 @@ public abstract class Player extends GameUnit {
         if (isLevelUp()) {
             xp = xp - (50 * level);
             level++;
-            hp = hp + (10 * level);
-            currHP = hp;
-            ap = ap + (5 * level);
-            dp = dp + (2 * level);
+            setHp(getHp() + (10 * level));
+            setCurrHP(getHp());
+            setAp(getAp() + (5 * level));
+            setDp(getDp() + (2 * level));
         }
     }
 
+    //Abstract methods
     abstract void levelUp();
-
     abstract void castSpecialAbility();
 
 
+    //Getters & setters
     public Integer getXp() {
         return xp;
     }

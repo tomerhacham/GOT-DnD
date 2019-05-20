@@ -10,4 +10,21 @@ public abstract class Enemy extends GameUnit {
         this.tile = tile;
     }
 
+
+    //Getters & setters
+    public Integer getXp() {
+        return xp;
+    }
+
+    public void setXp(Integer xp) {
+        this.xp = xp;
+    }
+
+    public char getTile() {
+        return tile;
+    }
+
+    public void setTile(char tile) {
+        this.tile = tile;
+    }
 }
