@@ -1,11 +1,13 @@
 package GoT.DnD.Business_Layer;
 
+import java.awt.*;
+
 public abstract class Player extends GameUnit {
     private Integer level;      //Player's level
     private Integer xp;         //Experience
 
 
-    public Player (String name, Integer hp, Integer currHP, Integer ap, Integer dp, Integer[] position){
+    public Player (String name, Integer hp, Integer currHP, Integer ap, Integer dp, Point position){
         super(name, hp, currHP, ap, dp, position);
         this.level = 1;
         this.xp = 0;

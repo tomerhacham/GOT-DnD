@@ -1,20 +1,22 @@
 package GoT.DnD.Business_Layer;
 
+import java.awt.*;
+
 public abstract class GameUnit {
     private String name;
     private Integer hp;              //Health Pool
     private Integer currHP;          //Current Health
     private Integer ap;              //Attacking Points
     private Integer dp;              //Defense Points
-    private Integer[] position;
+    private Point position;               //Position (x,y) on 2D board
 
-    public GameUnit(String name, Integer hp, Integer currHP, Integer ap, Integer dp, Integer[] position) {
+    public GameUnit(String name, Integer hp, Integer currHP, Integer ap, Integer dp, Point position) {
         this.name = name;
         this.hp = hp;
         this.currHP = currHP;
         this.ap = ap;
         this.dp = dp;
-        this.position = new Integer[2];
+        this.position = position;
     }
 
     //Abstract methods
@@ -54,11 +56,16 @@ public abstract class GameUnit {
         this.currHP = currHP;
     }
 
-    public Integer[] getPosition() {
+    public Point getPosition() {
         return position;
     }
 
-    public void setPosition(Integer[] position) {
+    public void setPosition(Point position) {
         this.position = position;
     }
+
+    public void setPosition(int x, int y) {
+        position.setLocation(x, y);
+    }
+
 }
