@@ -16,6 +16,7 @@ public class Board {
 
     static final char EMPTY = '.';
     static final char WALL = '#';
+    static final char HERO = '@';
 
     //Constructor
     public Board(String level){
@@ -57,11 +58,25 @@ public class Board {
 
     public static boolean isLegalMove(Point pos, int move){
         Point p = new Point(pos.x, pos.y);
-        if ((move == 1 && board[p.x][p.y+1] == EMPTY) || (move == 2 && board[p.x][p.y-1] == EMPTY) || (move == 3 && board[p.x+1][p.y] == EMPTY) || (move == 4 && board[p.x-1][p.y] == EMPTY)){
-            return true;
-        } else {
-
+        Character gu = null;
+        switch (move){
+            case 1:
+                gu = board[p.x][p.y+1];
+            case 2:
+                gu = board[p.x][p.y-1];
+            case 3:
+                gu = board[p.x+1][p.y];
+            case 4:
+                gu = board[p.x-1][p.y];
         }
+        if (gu == EMPTY){
+            return true;
+        } else if(gu != WALL && gu != HERO) {
+            return false;
+        } else if (gu == HERO){
+            //TODO: Engage combat
+        } else
+            return false;
 
     }
 
