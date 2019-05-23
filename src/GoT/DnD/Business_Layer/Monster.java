@@ -13,28 +13,25 @@ public class Monster extends Enemy{
 
     @Override
     public void gameTick() {
-        if range(this, HERO) { //@TODO: HERO REFERENCE
+        if range(this, HERO) { //TODO: HERO REFERENCE
             int dx = this.getPosition().x - hero.getPoisition().x;
             int dy = this.getPosition().y - hero.getPoistion().y;
             if (Math.abs(dx) > Math.abs(dy)) {
                 if (dx > 0){
-                    this.setPosition(this.getPosition().x - 1, this.getPosition().y);
+                    this.Move(LEFT);
                 } else {
-                    this.setPosition(this.getPosition().x + 1, this.getPosition().y);
+                    this.Move(RIGHT);
                 }
             } else {
                 if (dy > 0) {
-                    this.setPosition(this.getPosition().x, this.getPosition().y + 1);
+                    this.Move(UP);
                 } else {
-                    this.setPosition(this.getPosition().x, this.getPosition().y - 1);
+                    this.Move(DOWN);
                 }
             }
         } else {
             int randomMove = ThreadLocalRandom.current().nextInt(1, 5);
-            switch(randomMove) {
-                case 1:     //Move Right
-
-            }
+            this.Move(randomMove);
         }
     }
 
