@@ -11,7 +11,6 @@ public class Monster extends Enemy{
         this.vr = vr;
     }
 
-    @Override
     public void gameTick() {
         if (rangeToHero() < vr) {
             int dx = this.getPosition().x - super.getHero().getPosition().x;
