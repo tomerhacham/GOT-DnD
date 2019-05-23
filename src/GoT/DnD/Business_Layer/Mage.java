@@ -1,6 +1,8 @@
 package GoT.DnD.Business_Layer;
 
 import java.awt.*;
+import java.util.LinkedList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Mage extends Player {
     private Integer spellPower;
@@ -31,16 +33,23 @@ public class Mage extends Player {
     }
 
     @Override
-    void castSpecialAbility() {
+    void castSpecialAbility(LinkedList<GameUnit> enemies) {
        if (currMana < cost){
            //@TODO: Generate an appropriate error message.
        }
        else {
+           LinkedList<Enemy> nearBy = new LinkedList<>();
+           for (GameUnit enemy: enemies) {
+               if (getPosition().distance(enemy.getPosition()) <= range){
+                   nearBy.add((Enemy)enemy);
+               }
+           }
            currMana = currMana - cost;
            Integer hits = 0;
-           while (hits < hitTimes && ){
-               //@TODO: Implement while hits < hit times ∧ ∃ enemy s.t. range(enemy, player) < range do...
-
+           while (hits < hitTimes && !nearBy.isEmpty()){
+               Enemy victim = nearBy.get(ThreadLocalRandom.current().nextInt(0, nearBy.size()));
+               //TODO: Engage combat.
+               hitTimes++;
            }
        }
     }

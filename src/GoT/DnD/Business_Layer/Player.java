@@ -1,6 +1,7 @@
 package GoT.DnD.Business_Layer;
 
 import java.awt.*;
+import java.util.LinkedList;
 
 public abstract class Player extends GameUnit {
     private Integer level;      //Player's level
@@ -30,7 +31,7 @@ public abstract class Player extends GameUnit {
 
     //Abstract methods
     abstract void levelUp();
-    abstract void castSpecialAbility();
+    abstract void castSpecialAbility(LinkedList<GameUnit> enemies);
 
     public String GameUnitType(){return "Player"; }
     //Getters & setters

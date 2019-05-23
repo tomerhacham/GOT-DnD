@@ -1,6 +1,7 @@
 package GoT.DnD.Business_Layer;
 
 import java.awt.*;
+import java.util.LinkedList;
 
 public class Rogue extends Player {
     private Integer cost;
@@ -21,13 +22,21 @@ public class Rogue extends Player {
     }
 
     @Override
-    void castSpecialAbility() {
+    void castSpecialAbility(LinkedList<GameUnit> enemies) {
         if (currEnergy < cost){
             //@TODO: Generate an appropriate error message.
         }
         else {
             currEnergy = currEnergy - cost;
-            //@TODO: Implement For each enemy within range < 2, attempt to deal damage...
+            LinkedList<Enemy> nearBy = new LinkedList<>();
+            for (GameUnit enemy: enemies) {
+                if (getPosition().distance(enemy.getPosition()) < 2){
+                    nearBy.add((Enemy)enemy);
+                }
+            }
+            for (Enemy enemy: nearBy){
+                //TODO: Engage combat.
+            }
         }
     }
 
