@@ -12,14 +12,16 @@ public class Board {
     //Fields
     Character[][] Board;
     LinkedList<GameUnit> GameUnits;
+    GameUnit Hero;
 
     //Constractor
-    public Board(String level){
+    public Board(String level, GameUnit Hero){
         int x=0;
         int y=0;
         List<String> boardScheme = ReadText.readAllLines(level);
         Board = new Character[boardScheme.size()][boardScheme.get(1).length()]; //Initialize board in the required dimension
-        GameUnits = BoardSchemeParser.ParseScheme(boardScheme);
+        this.Hero=Hero;
+        GameUnits = BoardSchemeParser.ParseScheme(boardScheme,Hero);
         for (String line:boardScheme) {
             for (char tile:line.toCharArray()) {
                 Board[x][y]=tile;
