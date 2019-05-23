@@ -1,5 +1,6 @@
 package GoT.DnD.Business_Layer;
 
+import
 import java.awt.*;
 
 public abstract class GameUnit {
@@ -27,6 +28,7 @@ public abstract class GameUnit {
     //Abstract methods
     public abstract void gameTick();
 
+    //Methods
     public void Move(int direction){
         switch (direction){
             case 1:
