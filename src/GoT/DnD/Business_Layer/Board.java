@@ -93,6 +93,27 @@ public class Board {
         gameunit.Move(direction);
     }
 
+    private List<Point> getEmptyPlaces(){
+        List<Point> emptySpots = new LinkedList<>();
+        for(int x=0;x<board.length;x++){
+            for(int y=0;y<board[x].length;y++){
+                if(board[x][y]==EMPTY){
+                    emptySpots.add(new Point(x,y));
+                }
+            }
+        }
+        return emptySpots;
+    }
+    public void gameTick(){
+        for(GameUnit gu:GameUnits){
+            if(gu.GameUnitType().equals("Trap")){
+                gu.gameTick(getEmptyPlaces());
+            }
+            else{
+                gu.gameTick();
+            }
+        }
+    }
 
 
 

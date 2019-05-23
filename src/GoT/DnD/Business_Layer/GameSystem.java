@@ -13,10 +13,9 @@ public class GameSystem {
         //TODO:initialize board by level and maintain it
         this.Hero=Hero;
     }
-    public void Round(){
+    public void gameTick(){
         //TODO: after action of the Hero from the input
-        List<GameUnit> gameUnits = board.getGameUnits();
-        for(GameUnit gu:gameUnits){
+        board.gameTick();
         }
 
     }
