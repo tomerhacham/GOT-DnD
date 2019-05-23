@@ -27,6 +27,7 @@ public abstract class GameUnit {
 
     //Abstract methods
     public abstract void gameTick();
+    public abstract String GameUnitType();
 
     //Methods
     public void Move(int direction){
@@ -45,7 +46,6 @@ public abstract class GameUnit {
                 break;
         }
     }
-
 
     //Getters & setters
     public Integer getHp() {

@@ -1,6 +1,7 @@
 package GoT.DnD.Business_Layer;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class GameSystem {
     //Fields
@@ -12,13 +13,11 @@ public class GameSystem {
         //TODO:initialize board by level and maintain it
         this.Hero=Hero;
     }
-    public void castSpecialAbility() {
-
-        LinkedList<GameUnit> nearbyCreatures = NearbyGameUnits(Hero,Hero.getRange())
-
-    }
-
-
+    public void Round(){
+        //TODO: after action of the Hero from the input
+        List<GameUnit> gameUnits = board.getGameUnits();
+        for(GameUnit gu:gameUnits){
+        }
 
     }
 }
