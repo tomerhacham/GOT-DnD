@@ -17,6 +17,8 @@ public class GameSystem {
         //TODO: after action of the Hero from the input
         board.gameTick();
         }
+    public void castSpecialAbility(){
+        board.castSpecialAbility();
 
     }
 }

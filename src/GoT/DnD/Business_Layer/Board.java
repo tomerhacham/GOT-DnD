@@ -38,6 +38,9 @@ public class Board {
     }
 
     //Methods
+    public void castSpecialAbility(){
+        Hero.castSpecialAbility(GameUnits);
+    }
     public LinkedList<GameUnit> getGameUnits() {
         return GameUnits;
     }
@@ -86,7 +89,6 @@ public class Board {
             return false;
 
     }
-
     public void MoveHero(int direction){
         Point prevPoint = Hero.getPosition();
         Hero.Move(direction);
@@ -94,7 +96,6 @@ public class Board {
         board[Hero.getPosition().x][Hero.getPosition().y]=HERO;
 
     }
-
     private List<Point> getEmptyPlaces(){
         List<Point> emptySpots = new LinkedList<>();
         for(int x=0;x<board.length;x++){
