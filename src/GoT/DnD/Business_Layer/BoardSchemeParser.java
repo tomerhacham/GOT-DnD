@@ -1,5 +1,6 @@
 package GoT.DnD.Business_Layer;
 
+import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,7 +30,13 @@ public class BoardSchemeParser {
     public static GameUnit GameUnitBuilder(char tile){
         GameUnit unit;
         if(tile!='B' && tile!='Q' && tile!='D'){
-            //TODO: call Trap builder and pass the tile
+            switch (tile){
+                case 'B': unit = new Trap("Bonus Trap",1,1,1,new Point(0,0),250,tile,5,6,2);
+                        break;
+                case 'Q':unit = new Trap("Queen's Trap",250,50,10,new Point(0,0),100,tile,4,10,4);
+                        break;
+                case 'D':
+            }
         }
         else{
             //TODO: call Monster builder and pass the tile
