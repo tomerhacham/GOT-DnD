@@ -12,6 +12,8 @@ public class Board {
     //Fields
     private static Character[][] board;
     private LinkedList<GameUnit> GameUnits;
+    LinkedList<GameUnit> GameUnits;
+    GameUnit Hero;
 
     static final char EMPTY = '.';
     static final char WALL = '#';
@@ -23,6 +25,8 @@ public class Board {
         List<String> boardScheme = ReadText.readAllLines(level);
         board = new Character[boardScheme.size()][boardScheme.get(1).length()]; //Initialize board in the required dimension
         GameUnits = BoardSchemeParser.ParseScheme(boardScheme);
+        this.Hero=Hero;
+        GameUnits = BoardSchemeParser.ParseScheme(boardScheme,Hero);
         for (String line:boardScheme) {
             for (char tile:line.toCharArray()) {
                 board[x][y]=tile;
@@ -57,7 +61,7 @@ public class Board {
         if ((move == 1 && board[p.x][p.y+1] == EMPTY) || (move == 2 && board[p.x][p.y-1] == EMPTY) || (move == 3 && board[p.x+1][p.y] == EMPTY) || (move == 4 && board[p.x-1][p.y] == EMPTY)){
             return true;
         } else {
-            
+
         }
 
     }
