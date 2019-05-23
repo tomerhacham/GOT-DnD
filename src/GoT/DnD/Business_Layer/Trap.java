@@ -3,6 +3,7 @@ package GoT.DnD.Business_Layer;
 import java.awt.*;
 
 
+
 public class Trap extends Enemy{
     private Integer reloRange;          //Relocation range
     private Integer reloTime;           //Ticks until trap relocates
@@ -24,7 +25,7 @@ public class Trap extends Enemy{
             //@TODO: Find all free positions within relocation range, randomly select one and set as position
         } else {
             tickCount++;
-            if (range(this, HERO) < 2){
+            if (range(this, Player hero) < 2){
                 //@TODO: Engage in melee combat
             }
         }

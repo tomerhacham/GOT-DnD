@@ -13,11 +13,12 @@ public class Monster extends Enemy{
 
     @Override
     public void gameTick() {
-        if range(this, HERO) { //TODO: HERO REFERENCE
+        if (range(this, hero) < vr) { //TODO: HERO REFERENCE
             int dx = this.getPosition().x - hero.getPoisition().x;
             int dy = this.getPosition().y - hero.getPoistion().y;
             if (Math.abs(dx) > Math.abs(dy)) {
                 if (dx > 0){
+                    Board.isLegalMove()
                     this.Move(LEFT);
                 } else {
                     this.Move(RIGHT);

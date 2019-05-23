@@ -44,7 +44,7 @@ public class Board {
         LinkedList<GameUnit> allCreatures = this.getGameUnits();
         LinkedList<GameUnit> nearbyCreatures = new LinkedList<GameUnit>();
         for (GameUnit creature : allCreatures) {
-            if (Range(gameunit, creature) <= radius) {
+            if (range(gameunit, creature) <= radius) {
                 nearbyCreatures.addLast(creature);
             }
 
@@ -53,9 +53,9 @@ public class Board {
     }
 
     public Double rangeToHero(GameUnit gameUnit){
-        return  Range(Hero,gameUnit);
+        return  range(Hero,gameUnit);
     }
-    public static Double Range(GameUnit gameunit1, GameUnit gameunit2){
+    public static Double range(GameUnit gameunit1, GameUnit gameunit2){
         return gameunit1.getPosition().distance(gameunit2.getPosition());
     }
 
@@ -65,12 +65,16 @@ public class Board {
         switch (move){
             case 1:
                 gu = board[p.x][p.y+1];
+                break;
             case 2:
                 gu = board[p.x][p.y-1];
+                break;
             case 3:
                 gu = board[p.x+1][p.y];
+                break;
             case 4:
                 gu = board[p.x-1][p.y];
+                break;
         }
         if (gu == EMPTY){
             return true;
