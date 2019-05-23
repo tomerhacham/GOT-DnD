@@ -32,7 +32,7 @@ public abstract class Player extends GameUnit {
     abstract void levelUp();
     abstract void castSpecialAbility();
 
-
+    public String GameUnitType(){return "Player"; }
     //Getters & setters
     public Integer getXp() {
         return xp;

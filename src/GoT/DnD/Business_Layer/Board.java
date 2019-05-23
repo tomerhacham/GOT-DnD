@@ -1,6 +1,7 @@
 package GoT.DnD.Business_Layer;
 
 import GoT.DnD.Persistent_Layer.ReadText;
+import sun.awt.image.ImageWatched;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -12,20 +13,20 @@ public class Board {
     //Fields
     private static Character[][] board;
     private LinkedList<GameUnit> GameUnits;
-    GameUnit Hero;
+    Player Hero;
 
     static final char EMPTY = '.';
     static final char WALL = '#';
     static final char HERO = '@';
 
     //Constructor
-    public Board(String level){
+    public Board(String level, Player Hero){
         int x=0;
         int y=0;
         List<String> boardScheme = ReadText.readAllLines(level);
         board = new Character[boardScheme.size()][boardScheme.get(1).length()]; //Initialize board in the required dimension
         GameUnits = BoardSchemeParser.ParseScheme(boardScheme,Hero);
-        this.Hero=GameUnits.getFirst();
+        this.Hero=(Player)GameUnits.getFirst();
         GameUnits.removeFirst();
         for (String line:boardScheme) {
             for (char tile:line.toCharArray()) {
@@ -51,14 +52,12 @@ public class Board {
         }
         return nearbyCreatures;
     }
-
     public Double rangeToHero(GameUnit gameUnit){
         return  Range(Hero,gameUnit);
     }
     public static Double Range(GameUnit gameunit1, GameUnit gameunit2){
         return gameunit1.getPosition().distance(gameunit2.getPosition());
     }
-
     public static boolean isLegalMove(Point pos, int move){
         Point p = new Point(pos.x, pos.y);
         Character gu = null;
@@ -81,6 +80,13 @@ public class Board {
         } else
             return false;
 
+    }
+
+    public void MoveHero(int direction){
+        MoveGameUnit(Hero,direction);
+    }
+    public void MoveGameUnit(GameUnit gameunit,int direction){
+        gameunit.Move(direction);
     }
 
 

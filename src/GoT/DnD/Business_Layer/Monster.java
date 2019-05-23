@@ -6,8 +6,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Monster extends Enemy{
     private Integer vr;             //Vision range
 
-    public Monster(String name, Integer hp, Integer ap, Integer dp, Point position, Integer xp, char tile, Integer vr){
-        super(name, hp, ap, dp, position, xp, tile);
+    public Monster(String name, Integer hp, Integer ap, Integer dp, Point position, Integer xp, char tile, Integer vr,GameUnit Hero){
+        super(name, hp, ap, dp, position, xp, tile,Hero);
         this.vr = vr;
     }
 
@@ -35,7 +35,7 @@ public class Monster extends Enemy{
         }
     }
 
-
+    public String GameUnitType(){return "Monster"; }
     //Getter & setter
     public Integer getVr() {
         return vr;

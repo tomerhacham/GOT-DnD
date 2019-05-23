@@ -25,7 +25,7 @@ public class BoardSchemeParser {
                     GameUnits.addFirst(Hero);
                 }
                 else if(tile!=Empty && tile!=Wall){
-                    GameUnit gameUnit=GameUnitBuilder(tile,position);
+                    GameUnit gameUnit=GameUnitBuilder(tile,position,Hero);
                     GameUnits.addLast(gameUnit);
                 }
                 y++;
@@ -42,39 +42,39 @@ public class BoardSchemeParser {
      * @param position the position to relocate the Enemy
      * @return constructed Enemy already positioned on the board
      */
-    public static GameUnit GameUnitBuilder(char tile,Point position){
+    public static GameUnit GameUnitBuilder(char tile,Point position,GameUnit Hero){
         GameUnit unit=null;
         if(tile!='B' && tile!='Q' && tile!='D'){
             switch (tile){
-                case 'B': unit = new Trap("Bonus Trap",1,1,1,position,250,tile,5,6,2);
+                case 'B': unit = new Trap("Bonus Trap",1,1,1,position,250,tile,5,6,2 ,Hero);
                         break;
-                case 'Q':unit = new Trap("Queen's Trap",250,50,10,position,100,tile,4,10,4);
+                case 'Q':unit = new Trap("Queen's Trap",250,50,10,position,100,tile,4,10,4,Hero);
                         break;
-                case 'D':unit = new Trap("Death Trap",500,100,20,position,250,tile,6,10,3);
+                case 'D':unit = new Trap("Death Trap",500,100,20,position,250,tile,6,10,3,Hero);
                         break;
             }
         }
         else{
             switch (tile){
-                case 's': unit = new Monster("Lannister Solider",80,8,3,position,25,tile,3);
+                case 's': unit = new Monster("Lannister Solider",80,8,3,position,25,tile,3,Hero);
                           break;
-                case 'k': unit = new Monster("Lannister Knight",200,14,8,position,50,tile,4);
+                case 'k': unit = new Monster("Lannister Knight",200,14,8,position,50,tile,4,Hero);
                           break;
-                case 'q': unit = new Monster("Queen's Guard",400,20,15,position,100,tile,5);
+                case 'q': unit = new Monster("Queen's Guard",400,20,15,position,100,tile,5,Hero);
                           break;
-                case 'z': unit = new Monster("Wright",600,30,15,position,100,tile,3);
+                case 'z': unit = new Monster("Wright",600,30,15,position,100,tile,3,Hero);
                           break;
-                case 'b': unit = new Monster("Bear-Wright",1000,75,30,position,250,tile,4);
+                case 'b': unit = new Monster("Bear-Wright",1000,75,30,position,250,tile,4,Hero);
                     break;
-                case 'g': unit = new Monster("Giant-Wright",1500,100,40,position,500,tile,5);
+                case 'g': unit = new Monster("Giant-Wright",1500,100,40,position,500,tile,5,Hero);
                     break;
-                case 'w': unit = new Monster("White Walker",2000,150,50,position,1000,tile,6);
+                case 'w': unit = new Monster("White Walker",2000,150,50,position,1000,tile,6,Hero);
                     break;
-                case 'M': unit = new Monster("The Mountain",1000,60,25,position,500,tile,6);
+                case 'M': unit = new Monster("The Mountain",1000,60,25,position,500,tile,6,Hero);
                     break;
-                case 'C': unit = new Monster("Queen Cersei",100,10,10,position,1000,tile,1);
+                case 'C': unit = new Monster("Queen Cersei",100,10,10,position,1000,tile,1,Hero);
                     break;
-                case 'K': unit = new Monster("Night's King",5000,300,150,position,5000,tile,8);
+                case 'K': unit = new Monster("Night's King",5000,300,150,position,5000,tile,8,Hero);
                     break;
             }
         }
