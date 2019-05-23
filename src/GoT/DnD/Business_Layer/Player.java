@@ -29,6 +29,7 @@ public abstract class Player extends GameUnit {
     }
 
     //Abstract methods
+    abstract void gameTick();
     abstract void levelUp();
     abstract void castSpecialAbility();
 
