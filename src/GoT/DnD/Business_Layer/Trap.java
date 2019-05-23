@@ -27,7 +27,8 @@ public class Trap extends Enemy{
 
     }
 
-    public void gameTick(List<Point> emptyPlaces) {
+    public boolean gameTick(List<Point> emptyPlaces) {
+        boolean isMoved=false;
         List<Point> rangePlaces = new LinkedList<>();
         for (Point p: emptyPlaces){
             if (getPosition().distance(p) <= reloRange){
@@ -37,6 +38,7 @@ public class Trap extends Enemy{
         if (tickCount == reloTime) {
             tickCount = 0;
             setPosition(rangePlaces.get(ThreadLocalRandom.current().nextInt(0, rangePlaces.size())));
+            isMoved=true;
         } else {
             tickCount++;
             if (rangeToHero() < 2){
@@ -49,6 +51,11 @@ public class Trap extends Enemy{
         } else {
             isVisible = false;
         }
+        return  isMoved;
+    }
+
+    public boolean getIsVisible() {
+        return isVisible;
     }
 
     public String GameUnitType(){return "Trap"; }

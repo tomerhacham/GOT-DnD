@@ -81,16 +81,18 @@ public class Board {
             return false;
         } else if (gu == HERO){
             //TODO: Engage combat
+            return true; //to be changed
         } else
             return false;
 
     }
 
     public void MoveHero(int direction){
-        MoveGameUnit(Hero,direction);
-    }
-    public void MoveGameUnit(GameUnit gameunit,int direction){
-        gameunit.Move(direction);
+        Point prevPoint = Hero.getPosition();
+        Hero.Move(direction);
+        board[prevPoint.x][prevPoint.y]=EMPTY;
+        board[Hero.getPosition().x][Hero.getPosition().y]=HERO;
+
     }
 
     private List<Point> getEmptyPlaces(){
@@ -105,18 +107,37 @@ public class Board {
         return emptySpots;
     }
     public void gameTick(){
-        for(GameUnit gu:GameUnits){
+        for(GameUnit c:GameUnits){
+            Enemy gu= (Enemy)c;
+            Point prevPoint = gu.getPosition();
             if(gu.GameUnitType().equals("Trap")){
-                gu.gameTick(getEmptyPlaces());
+                Trap t=(Trap)gu;
+                if(t.gameTick(getEmptyPlaces())){// in case that the trap have been moved
+                    board[prevPoint.x][prevPoint.y]=EMPTY;
+                    if(t.getIsVisible()){
+                        board[t.getPosition().x][t.getPosition().y]=t.getTile();
+                    }
+                    else{
+                        board[t.getPosition().x][t.getPosition().y]=EMPTY;
+                    }
+                }
+                else{ //Trap became invisible and didnt moved
+                    if(t.getIsVisible()){
+                        board[t.getPosition().x][t.getPosition().y]=t.getTile();
+                    }
+                    else{
+                        board[t.getPosition().x][t.getPosition().y]=EMPTY;
+                    }
+                }
             }
-            else{
-                gu.gameTick();
+            else{//Monster has been moved
+                if(gu.gameTick()){
+                    board[prevPoint.x][prevPoint.y]=EMPTY;
+                    board[gu.getPosition().x][gu.getPosition().y]=gu.getTile();
+                }
             }
         }
     }
-
-
-
 
 }
 

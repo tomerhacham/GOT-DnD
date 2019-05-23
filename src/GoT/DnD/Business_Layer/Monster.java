@@ -11,30 +11,39 @@ public class Monster extends Enemy{
         this.vr = vr;
     }
 
-    public void gameTick() {
+    public boolean gameTick() {
+        boolean isMoved=false;
         if (rangeToHero() < vr) {
             int dx = this.getPosition().x - super.getHero().getPosition().x;
             int dy = this.getPosition().y - super.getHero().getPosition().y;
             if (Math.abs(dx) > Math.abs(dy)) {
-                chaseDown(dx, LEFT, RIGHT);
+                isMoved = chaseDown(dx, LEFT, RIGHT);
             } else {
-                chaseDown(dy, UP, DOWN);
+                isMoved = chaseDown(dy, UP, DOWN);
             }
         } else {
             int randomMove = ThreadLocalRandom.current().nextInt(1, 5);
-            this.Move(randomMove);
+            if(Board.isLegalMove(this.getPosition(),randomMove)){
+                this.Move(randomMove);
+                isMoved=true;
+            }
         }
+        return isMoved;
     }
 
     //Checks if Player close enough to chase, and where to move
-    private void chaseDown(int axis, int neg, int pos) {
+    private boolean chaseDown(int axis, int neg, int pos) {
+        boolean isMoved=false;
         if (axis > 0){
             if (Board.isLegalMove(this.getPosition(), neg)) {
                 this.Move(neg);
+                isMoved=true;
             }
         } else if (Board.isLegalMove(this.getPosition() , pos)) {
             this.Move(pos);
+            isMoved=true;
         }
+        return isMoved;
     }
 
     public String GameUnitType(){return "Monster"; }
