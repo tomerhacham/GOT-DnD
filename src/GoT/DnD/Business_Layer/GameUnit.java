@@ -10,7 +10,10 @@ public abstract class GameUnit {
     private Integer dp;              //Defense Points
     private Point position;          //Position (x,y) on 2D board
 
-    static final char UP = ""
+    static final int UP = 1;
+    static final int DOWN = 2;
+    static final int RIGHT = 3;
+    static final int LEFT = 4;
 
     public GameUnit(String name, Integer hp, Integer ap, Integer dp, Point position) {
         this.name = name;
@@ -24,7 +27,22 @@ public abstract class GameUnit {
     //Abstract methods
     public abstract void gameTick();
 
-    public void Move()
+    public void Move(int direction){
+        switch (direction){
+            case 1:
+                this.setPosition(this.getPosition().x, this.getPosition().y + 1);
+                break;
+            case 2:
+                this.setPosition(this.getPosition().x, this.getPosition().y - 1);
+                break;
+            case 3:
+                this.setPosition(this.getPosition().x + 1, this.getPosition().y);
+                break;
+            case 4:
+                this.setPosition(this.getPosition().x - 1, this.getPosition().y);
+                break;
+        }
+    }
 
 
     //Getters & setters
