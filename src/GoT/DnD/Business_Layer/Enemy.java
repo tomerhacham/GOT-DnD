@@ -14,6 +14,11 @@ public abstract class Enemy extends GameUnit {
         this.tile = tile;
     }
 
+    //Methods
+    public double rangeToHero(){
+        return this.getPosition().distance(Hero.getPosition());
+    }
+
 
     //Getters & setters
     public Integer getXp() {
@@ -30,5 +35,9 @@ public abstract class Enemy extends GameUnit {
 
     public void setTile(char tile) {
         this.tile = tile;
+    }
+
+    public GameUnit getHero() {
+        return Hero;
     }
 }

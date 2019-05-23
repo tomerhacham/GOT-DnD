@@ -13,26 +13,28 @@ public class Monster extends Enemy{
 
     @Override
     public void gameTick() {
-        if (range(this, hero) < vr) { //TODO: HERO REFERENCE
-            int dx = this.getPosition().x - hero.getPoisition().x;
-            int dy = this.getPosition().y - hero.getPoistion().y;
+        if (rangeToHero() < vr) {
+            int dx = this.getPosition().x - super.getHero().getPosition().x;
+            int dy = this.getPosition().y - super.getHero().getPosition().y;
             if (Math.abs(dx) > Math.abs(dy)) {
-                if (dx > 0){
-                    Board.isLegalMove()
-                    this.Move(LEFT);
-                } else {
-                    this.Move(RIGHT);
-                }
+                chaseDown(dx, LEFT, RIGHT);
             } else {
-                if (dy > 0) {
-                    this.Move(UP);
-                } else {
-                    this.Move(DOWN);
-                }
+                chaseDown(dy, UP, DOWN);
             }
         } else {
             int randomMove = ThreadLocalRandom.current().nextInt(1, 5);
             this.Move(randomMove);
+        }
+    }
+
+    //Checks if Player close enough to chase, and where to move
+    private void chaseDown(int axis, int neg, int pos) {
+        if (axis > 0){
+            if (Board.isLegalMove(this.getPosition(), neg)) {
+                this.Move(neg);
+            }
+        } else if (Board.isLegalMove(this.getPosition() , pos)) {
+            this.Move(pos);
         }
     }
 

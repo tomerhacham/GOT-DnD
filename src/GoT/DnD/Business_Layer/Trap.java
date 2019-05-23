@@ -25,7 +25,7 @@ public class Trap extends Enemy{
             //@TODO: Find all free positions within relocation range, randomly select one and set as position
         } else {
             tickCount++;
-            if (range(this, Player hero) < 2){
+            if (rangeToHero() < 2){
                 //@TODO: Engage in melee combat
             }
         }
