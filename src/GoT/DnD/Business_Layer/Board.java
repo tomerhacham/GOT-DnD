@@ -20,8 +20,9 @@ public class Board {
         int y=0;
         List<String> boardScheme = ReadText.readAllLines(level);
         Board = new Character[boardScheme.size()][boardScheme.get(1).length()]; //Initialize board in the required dimension
-        this.Hero=Hero;
         GameUnits = BoardSchemeParser.ParseScheme(boardScheme,Hero);
+        this.Hero=GameUnits.getFirst();
+        GameUnits.removeFirst();
         for (String line:boardScheme) {
             for (char tile:line.toCharArray()) {
                 Board[x][y]=tile;
