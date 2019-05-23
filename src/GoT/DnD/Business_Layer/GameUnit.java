@@ -8,12 +8,14 @@ public abstract class GameUnit {
     private Integer currHP;          //Current Health
     private Integer ap;              //Attacking Points
     private Integer dp;              //Defense Points
-    private Point position;               //Position (x,y) on 2D board
+    private Point position;          //Position (x,y) on 2D board
 
-    public GameUnit(String name, Integer hp, Integer currHP, Integer ap, Integer dp, Point position) {
+    static final char UP = ""
+
+    public GameUnit(String name, Integer hp, Integer ap, Integer dp, Point position) {
         this.name = name;
         this.hp = hp;
-        this.currHP = currHP;
+        currHP = hp;
         this.ap = ap;
         this.dp = dp;
         this.position = position;
@@ -21,6 +23,8 @@ public abstract class GameUnit {
 
     //Abstract methods
     public abstract void gameTick();
+
+    public void Move()
 
 
     //Getters & setters

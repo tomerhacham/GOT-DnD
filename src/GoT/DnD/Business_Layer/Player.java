@@ -7,8 +7,8 @@ public abstract class Player extends GameUnit {
     private Integer xp;         //Experience
 
 
-    public Player (String name, Integer hp, Integer currHP, Integer ap, Integer dp, Point position){
-        super(name, hp, currHP, ap, dp, position);
+    public Player (String name, Integer hp, Integer ap, Integer dp, Point position){
+        super(name, hp, ap, dp, position);
         this.level = 1;
         this.xp = 0;
     }

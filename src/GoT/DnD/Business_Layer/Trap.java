@@ -8,8 +8,8 @@ public class Trap extends Enemy{
     private Integer visTime;            //Visibility time. Ticks until trap becomes invisible
     private Integer tickCount;          //# of ticks since last relocation
 
-    public Trap(String name, Integer hp, Integer currHP, Integer ap, Integer dp, Point position, Integer xp, char tile, Integer reloRange, Integer reloTime, Integer visTime, Integer tickCount) {
-        super(name, hp, currHP, ap, dp, position, xp, tile);
+    public Trap(String name, Integer hp, Integer ap, Integer dp, Point position, Integer xp, char tile, Integer reloRange, Integer reloTime, Integer visTime, Integer tickCount) {
+        super(name, hp, ap, dp, position, xp, tile);
         this.reloRange = reloRange;
         this.reloTime = reloTime;
         this.visTime = visTime;

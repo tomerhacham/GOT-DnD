@@ -1,11 +1,15 @@
 package GoT.DnD.Business_Layer;
 
+import com.sun.corba.se.impl.oa.poa.POAImpl;
+
+import java.awt.*;
+
 public class Warrior extends Player {
     private Integer cooldown;
     private Integer remaining;
 
-    public Warrior(String name, Integer hp, Integer currHP, Integer ap, Integer dp, Integer[] position, Integer cooldown){
-        super(name, hp, currHP, ap, dp, position);
+    public Warrior(String name, Integer hp, Integer ap, Integer dp, Point position, Integer cooldown){
+        super(name, hp, ap, dp, position);
         this.cooldown = cooldown;
         this.remaining = 0;
     }

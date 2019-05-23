@@ -6,8 +6,8 @@ public abstract class Enemy extends GameUnit {
     private Integer xp;         //Experience value
     private char tile;
 
-    public Enemy(String name, Integer hp, Integer currHP, Integer ap, Integer dp, Point position, Integer xp, char tile){
-        super(name, hp, currHP, ap, dp, position);
+    public Enemy(String name, Integer hp, Integer ap, Integer dp, Point position, Integer xp, char tile){
+        super(name, hp, ap, dp, position);
         this.xp = xp;
         this.tile = tile;
     }

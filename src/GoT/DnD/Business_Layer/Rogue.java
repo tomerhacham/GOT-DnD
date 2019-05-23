@@ -1,11 +1,13 @@
 package GoT.DnD.Business_Layer;
 
+import java.awt.*;
+
 public class Rogue extends Player {
     private Integer cost;
     private Integer currEnergy;
 
-    public Rogue(String name, Integer hp, Integer currHP, Integer ap, Integer dp, Integer[] position, Integer cost){
-        super(name, hp, currHP, ap, dp, position);
+    public Rogue(String name, Integer hp, Integer ap, Integer dp, Point position, Integer cost){
+        super(name, hp, ap, dp, position);
         this.cost = cost;
         this.currEnergy = 100;
     }
