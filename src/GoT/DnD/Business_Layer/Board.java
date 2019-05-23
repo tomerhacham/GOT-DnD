@@ -52,6 +52,9 @@ public class Board {
         return nearbyCreatures;
     }
 
+    public Double rangeToHero(GameUnit gameUnit){
+        return  Range(Hero,gameUnit);
+    }
     public static Double Range(GameUnit gameunit1, GameUnit gameunit2){
         return gameunit1.getPosition().distance(gameunit2.getPosition());
     }
