@@ -23,6 +23,10 @@ public class Trap extends Enemy{
         isVisible = true;
     }
 
+    public void gameTick(){
+
+    }
+
     public void gameTick(List<Point> emptyPlaces) {
         List<Point> rangePlaces = new LinkedList<>();
         for (Point p: emptyPlaces){

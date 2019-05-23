@@ -26,6 +26,7 @@ public abstract class GameUnit {
     }
 
     //Abstract methods
+    abstract void gameTick();
     public abstract String GameUnitType();
 
     //Methods
