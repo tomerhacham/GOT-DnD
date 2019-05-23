@@ -10,22 +10,25 @@ import java.util.List;
 public class Board {
 
     //Fields
-    Character[][] Board;
-    LinkedList<GameUnit> GameUnits;
+    private static Character[][] board;
+    private LinkedList<GameUnit> GameUnits;
     GameUnit Hero;
 
-    //Constractor
-    public Board(String level, GameUnit Hero){
+    static final char EMPTY = '.';
+    static final char WALL = '#';
+
+    //Constructor
+    public Board(String level){
         int x=0;
         int y=0;
         List<String> boardScheme = ReadText.readAllLines(level);
-        Board = new Character[boardScheme.size()][boardScheme.get(1).length()]; //Initialize board in the required dimension
+        board = new Character[boardScheme.size()][boardScheme.get(1).length()]; //Initialize board in the required dimension
         GameUnits = BoardSchemeParser.ParseScheme(boardScheme,Hero);
         this.Hero=GameUnits.getFirst();
         GameUnits.removeFirst();
         for (String line:boardScheme) {
             for (char tile:line.toCharArray()) {
-                Board[x][y]=tile;
+                board[x][y]=tile;
                 x++;
             }
             y++;
@@ -47,9 +50,22 @@ public class Board {
         }
         return nearbyCreatures;
     }
+
     public static Double Range(GameUnit gameunit1, GameUnit gameunit2){
         return gameunit1.getPosition().distance(gameunit2.getPosition());
     }
+
+    public static boolean isLegalMove(Point pos, int move){
+        Point p = new Point(pos.x, pos.y);
+        if ((move == 1 && board[p.x][p.y+1] == EMPTY) || (move == 2 && board[p.x][p.y-1] == EMPTY) || (move == 3 && board[p.x+1][p.y] == EMPTY) || (move == 4 && board[p.x-1][p.y] == EMPTY)){
+            return true;
+        } else {
+
+        }
+
+    }
+
+
 
 
 
