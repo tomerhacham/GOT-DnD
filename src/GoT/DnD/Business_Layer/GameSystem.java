@@ -6,11 +6,11 @@ import java.util.List;
 public class GameSystem {
     //Fields
     Board board;
-    GameUnit Hero;
+    Player Hero;
 
     //Constructors
-    public GameSystem(GameUnit Hero){
-        //TODO:initialize board by level and maintain it
+    public GameSystem(Player Hero){
+        board = new Board("level 1",Hero);
         this.Hero=Hero;
     }
     public void gameTick(){
