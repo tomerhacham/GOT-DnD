@@ -1,6 +1,5 @@
 package GoT.DnD.Business_Layer;
 
-import
 import java.awt.*;
 
 public abstract class GameUnit {
@@ -10,19 +9,21 @@ public abstract class GameUnit {
     private Integer ap;              //Attacking Points
     private Integer dp;              //Defense Points
     private Point position;          //Position (x,y) on 2D board
+    private Integer xp;             //Experience value
 
     static final int UP = 1;
     static final int DOWN = 2;
     static final int RIGHT = 3;
     static final int LEFT = 4;
 
-    public GameUnit(String name, Integer hp, Integer ap, Integer dp, Point position) {
+    public GameUnit(String name, Integer hp, Integer ap, Integer dp, Point position, int xp) {
         this.name = name;
         this.hp = hp;
         currHP = hp;
         this.ap = ap;
         this.dp = dp;
         this.position = position;
+        this.xp=xp;
     }
 
     //Abstract methods
@@ -92,4 +93,7 @@ public abstract class GameUnit {
         position.setLocation(x, y);
     }
 
+    public Integer getXp() {return xp;}
+
+    public void setXp(Integer xp) {this.xp = xp;}
 }

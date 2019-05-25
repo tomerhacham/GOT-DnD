@@ -83,6 +83,7 @@ public class Board {
         } else if(gu != WALL && gu != HERO) {
             return false;
         } else if (gu == HERO){
+            //GameUnit attacker = this.getGameUnitByPosition(p); - fucking mess
             //TODO: Engage combat
             return true; //to be changed
         } else
@@ -106,6 +107,16 @@ public class Board {
             }
         }
         return emptySpots;
+    }
+
+    private GameUnit getGameUnitByPosition(Point point){
+        GameUnit toReturn=null;
+        for(GameUnit gu :GameUnits){
+            if (gu.getPosition().equals(point)){
+                toReturn=gu;
+            }
+        }
+        return toReturn;
     }
     public void gameTick(){
         for(GameUnit c:GameUnits){

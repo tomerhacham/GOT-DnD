@@ -9,9 +9,8 @@ public abstract class Player extends GameUnit {
 
 
     public Player (String name, Integer hp, Integer ap, Integer dp, Point position){
-        super(name, hp, ap, dp, position);
+        super(name, hp, ap, dp, position,0);
         this.level = 1;
-        this.xp = 0;
     }
 
     protected boolean isLevelUp(){
@@ -34,15 +33,8 @@ public abstract class Player extends GameUnit {
     abstract void castSpecialAbility(LinkedList<GameUnit> enemies);
 
     public String GameUnitType(){return "Player"; }
+
     //Getters & setters
-    public Integer getXp() {
-        return xp;
-    }
-
-    public void setXp(Integer xp) {
-        this.xp = xp;
-    }
-
     public Integer getLevel() {
         return level;
     }
