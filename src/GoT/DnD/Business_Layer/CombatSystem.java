@@ -31,16 +31,18 @@ class CombatSystem implements Observable {
             defender.setCurrHP(defender.getCurrHP() - dif);
             if (defender.getCurrHP() <= 0) {
                 attacker.setXp(attacker.getXp() + defender.getXp());  //added experience point of the defender to the attacker
-                message=message.concat(defender.getName()+"died. "+attacker.getName()+" gained "+defender.getXp()+" experience!"+System.lineSeparator());
+                message=message.concat(defender.getName()+" died. "+attacker.getName()+" gained "+defender.getXp()+" experience!"+System.lineSeparator());
             }
         }
+
         else{
             message=message.concat(attacker.getName()+" hits "+defender.getName()+" for "+0+" damage."+System.lineSeparator());
         }
+        message=message.concat(defender.toString());
         for(Observer obs:observers){
             obs.update((String)message);
         }
-        return true;
+        return false;
     }
     //region Observable implement
     @Override
