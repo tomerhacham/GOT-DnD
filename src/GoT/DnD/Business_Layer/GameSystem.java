@@ -20,7 +20,7 @@ public class GameSystem implements Observer {
     //Constructors
     public GameSystem(){
         this.Hero=initialize();
-        board = new Board("level 1",Hero);
+        board = new Board(1,Hero);
         this.observers=new LinkedList<Observer>();
 
         //region Player Options
@@ -39,11 +39,27 @@ public class GameSystem implements Observer {
     public void gameTick(){
         //TODO: after action of the Hero from the input
         board.gameTick();
+        if(board.getGameUnits().size()==0 && Hero.getCurrHP()>0) {//all the monster are dead
+            if(board.Level<4){
+                this.LoadLevel();
+            }
+            else{
+                update("Game is finished. You won!");
+            }
+        }
         update(board.BoardToDisplay());
+        if(Hero.getCurrHP()<=0){
+            System.exit(0);
+            }
         }
 
     public void castSpecialAbility(){
         board.castSpecialAbility();
+    }
+
+    private void LoadLevel(){
+        this.board= new Board(board.Level+1,Hero);
+
     }
     //region Observer implement
     @Override

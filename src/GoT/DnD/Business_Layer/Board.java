@@ -13,6 +13,7 @@ import java.util.List;
 public class Board {
 
     //Fields
+    int Level;
     private static Character[][] board;
     private static LinkedList<GameUnit> GameUnits;
     Player Hero;
@@ -22,10 +23,11 @@ public class Board {
     static final char HERO = '@';
 
     //Constructor
-    public Board(String level, Player Hero){
+    public Board(int level, Player Hero){
+        this.Level=level;
         int x=0;
         int y=0;
-        List<String> boardScheme = ReadText.readAllLines(level);
+        List<String> boardScheme = ReadText.readAllLines("Level "+this.Level);
         board = new Character[boardScheme.size()][boardScheme.get(1).length()]; //Initialize board in the required dimension
         GameUnits = BoardSchemeParser.ParseScheme(boardScheme,Hero);
         this.Hero=(Player)GameUnits.getFirst();
@@ -91,10 +93,15 @@ public class Board {
         } else if(gu != WALL && gu != HERO) {
             return false;
         } else if (gu == HERO){
-            //GameUnit attacker = this.getGameUnitByPosition(p); - fucking mess
-            //gameunit(thisgameunit).meeleCombat(getGameUnitByPosition(point)) - initiate fight between this gameunit and the other
-            //TODO: Engage combat
-            return gameUnit.meleeCombat(getGameUnitByPosition(destination)); //to be changed
+            GameUnit defender = getGameUnitByPosition(destination);
+            gameUnit.meleeCombat(defender);
+            if(gameUnit.getCurrHP()<=0){
+                GameUnits.remove(gameUnit);
+            }
+            if(defender.getCurrHP()<=0){
+                GameUnits.remove(gameUnit);
+            }
+            return true;
         } else
             return false;
 
@@ -121,7 +128,13 @@ public class Board {
         String boardAsString="";
         for(Character[] line:board){
             for (Character character:line){
+                if (Hero.getCurrHP()<=0 && character==HERO)
+                {boardAsString=boardAsString+'X';
+                }
+                else{
                 boardAsString=boardAsString+character;
+                }
+
             }
             boardAsString.concat(System.lineSeparator());
         }
@@ -141,7 +154,7 @@ public class Board {
         for(GameUnit c:GameUnits){
             Enemy gu= (Enemy)c;
             Point prevPoint = gu.getPosition();
-            if(gu.getCurrHP()>0 && gu.GameUnitType().equals("Trap")){
+            if(gu.GameUnitType().equals("Trap")){
                 Trap t=(Trap)gu;
                 if(t.gameTick(getEmptyPlaces())){// in case that the trap have been moved
                     board[prevPoint.x][prevPoint.y]=EMPTY;
@@ -161,12 +174,10 @@ public class Board {
                     }
                 }
             }
-            else if(gu.getCurrHP()>0 && gu.gameTick()){//Monster has been moved
+            else {//Monster has been moved
+                    gu.gameTick();
                     board[prevPoint.x][prevPoint.y]=EMPTY;
                     board[gu.getPosition().x][gu.getPosition().y]=gu.getTile();
-                }
-            else{//the gameunit is dead
-                board[gu.getPosition().x][gu.getPosition().y]=EMPTY;
             }
         }
     }

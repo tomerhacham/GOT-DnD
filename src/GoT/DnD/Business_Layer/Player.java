@@ -39,6 +39,12 @@ public abstract class Player extends GameUnit implements Observable {
     public String GameUnitType(){return "Player"; }
 
     //Getters & setters
+    public void setCurrHP(Integer currHP) {
+        this.setCurrHP(currHP);
+        if (currHP<=0){
+            notifyObserver(this.getName()+" died."+System.lineSeparator()+"You Lost.");
+        }
+    }
     public Integer getLevel() {
         return level;
     }
