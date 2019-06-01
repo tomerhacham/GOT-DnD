@@ -11,11 +11,11 @@ import java.util.List;
 
 public class GameSystem implements Observer {
     //Fields
-    Board board;
-    Player Hero;
-    LinkedList<Player> OptionsforPick;
-    LinkedList<Observer> observers;
-    CombatSystem combatSystem;
+    private Board board;
+    private Player Hero;
+    private LinkedList<Player> OptionsforPick;
+    private LinkedList<Observer> observers;
+    private CombatSystem combatSystem;
 
     //Constructors
     public GameSystem(){
@@ -41,9 +41,9 @@ public class GameSystem implements Observer {
         board.gameTick();
         update(board.BoardToDisplay());
         }
+
     public void castSpecialAbility(){
         board.castSpecialAbility();
-
     }
     //region Observer implement
     @Override
