@@ -42,7 +42,7 @@ public class Trap extends Enemy{
         } else {
             tickCount++;
             if (rangeToHero() < 2){
-                meeleCombat(getHero());
+                meleeCombat(getHero());
             }
         }
         if (tickCount < visTime){

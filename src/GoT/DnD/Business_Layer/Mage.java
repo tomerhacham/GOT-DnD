@@ -117,6 +117,11 @@ public class Mage extends Player {
         this.range = range;
     }
 
+    @Override
+    public String toString(){
+        return this.getName()+" Health:  "+getCurrHP()+" Attack damage: "+getAp()+" Defense: "+getDp()+" Level: "+getLevel()+ " Experience: "+getXp()+"/"+(50*getLevel())+" SpellPower: "+getSpellPower()+" Mana: "+getCurrMana()+"/"+getManaPool();
+    }
+
     //region Observable implement
     @Override
     public void register(Observer observer) {

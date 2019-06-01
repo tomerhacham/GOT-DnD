@@ -25,11 +25,9 @@ public class GameSystem implements Observer {
 
     //Constructors
     public GameSystem(){
-        this.Hero=initialize();
-        board = new Board(1,Hero);
         this.observers=new LinkedList<Observer>();
-
         //region Player Options
+        OptionsforPick=new LinkedList<>();
         OptionsforPick.add(new Warrior ("Jon Snow",300, 30,4,new Point(0,0),6));
         OptionsforPick.add(new Warrior ("The Hound",400, 20,6,new Point(0,0),4));
         OptionsforPick.add(new Mage("Melisandre",160,10,1,new Point(0,0),40,300,30,5,6));
@@ -37,6 +35,8 @@ public class GameSystem implements Observer {
         OptionsforPick.add(new Rogue("Arya Stark",150,40,2,new Point(0,0),20));
         OptionsforPick.add(new Rogue("Bronn",250,35,3,new Point(0,0),60));
         //endregion
+        this.Hero=initialize();
+        board = new Board(1,Hero);
         CombatSystem combatSystem = new CombatSystem();
         combatSystem.register(this);
     }
