@@ -6,11 +6,9 @@ import java.awt.*;
  * The first piece of code to run once the game will start
  */
 public class Initializer {
-    //Fields
-    static GameUnit Hero;
-    public static void initialize() {
+    public static GameSystem initialize(int PlayerSelection ) {
         //TODO: get user input for CLI
-        int PlayerSelection; //needs to get user input
+        Player Hero=null;
         switch(PlayerSelection){
             case 1: Hero= new Warrior ("Jon Snow",300, 30,4,new Point(0,0),6);
                     break;
@@ -25,7 +23,6 @@ public class Initializer {
             case 6: Hero = new Rogue("Bronn",250,35,3,new Point(0,0),60);
                     break;
         }
-        new GameSystem(Hero);
-
+        return new GameSystem(Hero);
     }
 }
