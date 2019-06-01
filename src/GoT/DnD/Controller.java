@@ -17,7 +17,6 @@ public class Controller {
 
     public static int choosePlayer(){
         Scanner reader = new Scanner(System.in);
-        String validInput = "123456";
         int input;
         do {
             while (!reader.hasNextInt()) {
