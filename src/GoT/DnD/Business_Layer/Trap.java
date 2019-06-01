@@ -23,8 +23,8 @@ public class Trap extends Enemy{
         isVisible = true;
     }
 
-    public void gameTick(){
-
+    public boolean gameTick(){
+        return true;
     }
 
     public boolean gameTick(List<Point> emptyPlaces) {
@@ -35,15 +35,14 @@ public class Trap extends Enemy{
                 rangePlaces.add(p);
             }
         }
-        if (tickCount == reloTime) {
+        if (tickCount.equals(reloTime)) {
             tickCount = 0;
             setPosition(rangePlaces.get(ThreadLocalRandom.current().nextInt(0, rangePlaces.size())));
             isMoved=true;
         } else {
             tickCount++;
             if (rangeToHero() < 2){
-                //@TODO: Engage in melee combat-DONE
-                CombatSystem.meeleCombat(this,getHero());
+                meeleCombat(getHero());
             }
         }
         if (tickCount < visTime){
@@ -55,8 +54,13 @@ public class Trap extends Enemy{
         return  isMoved;
     }
 
+    //Getters & setters
     public boolean getIsVisible() {
         return isVisible;
+    }
+
+    public void setIsVisable(boolean isVisible) {
+        this.isVisible = isVisible;
     }
 
     public String GameUnitType(){return "Trap"; }

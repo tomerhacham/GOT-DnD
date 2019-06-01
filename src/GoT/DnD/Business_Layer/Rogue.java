@@ -35,14 +35,15 @@ public class Rogue extends Player {
                 }
             }
             for (Enemy enemy: nearBy){
-                //TODO: Engage combat.
+                meeleCombat(enemy);
             }
         }
     }
 
     @Override
-    public void gameTick() {
+    public boolean gameTick() {
         currEnergy = Math.min(currEnergy + 10, 100);
+        return true;
     }
 
     //Getters & setters

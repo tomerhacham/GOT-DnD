@@ -1,8 +1,7 @@
 package GoT.DnD.Business_Layer;
 
-import com.sun.corba.se.impl.oa.poa.POAImpl;
-
 import java.awt.*;
+import java.util.LinkedList;
 
 public class Warrior extends Player {
     private Integer cooldown;
@@ -23,11 +22,12 @@ public class Warrior extends Player {
             setDp(getDp() + getLevel());
         }
     }
-    
+
     @Override
-    void castSpecialAbility() {
+    void castSpecialAbility(LinkedList<GameUnit> enemies) {
         if (remaining > 0){
-            //@TODO: Generate an appropriate error message.
+            //TODO: Generate an appropriate error message.
+            // Example: "The Hound tried to cast Heal, but there is a cool-down: 3"
         }
         else {
             remaining = cooldown;
@@ -36,7 +36,8 @@ public class Warrior extends Player {
     }
 
     @Override
-    public void gameTick() {
+    public boolean gameTick() {
         remaining = remaining - 1;
+        return true;
     }
 }
