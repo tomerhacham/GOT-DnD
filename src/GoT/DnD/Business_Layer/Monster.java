@@ -32,6 +32,7 @@ public class Monster extends Enemy{
     }
 
     //Checks if Player close enough to chase, and where to move
+    //TODO: needs somehow to get if the move is on monster/Player to initiate combat or its just a wall..
     private boolean chaseDown(int axis, int neg, int pos) {
         boolean isMoved=false;
         if (axis > 0){

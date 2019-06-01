@@ -61,7 +61,7 @@ public class Board {
     public static Double range(GameUnit gameunit1, GameUnit gameunit2){
         return gameunit1.getPosition().distance(gameunit2.getPosition());
     }
-    public static boolean isLegalMove(Point pos, int move){
+    public static boolean isLegalMove(Point pos, int move){//maybe we need to get the gameunit that tries to preform the move
         Point p = new Point(pos.x, pos.y);
         Character gu = null;
         switch (move){
@@ -84,6 +84,7 @@ public class Board {
             return false;
         } else if (gu == HERO){
             //GameUnit attacker = this.getGameUnitByPosition(p); - fucking mess
+            //gameunit(thisgameunit).meeleCombat(getGameUnitByPosition(point)) - initiate fight between this gameunit and the other
             //TODO: Engage combat
             return true; //to be changed
         } else

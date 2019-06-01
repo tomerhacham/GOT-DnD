@@ -48,6 +48,10 @@ public abstract class GameUnit {
         }
     }
 
+    public void meeleCombat(GameUnit other){
+        CombatSystem.meeleCombat(this,other);
+    }
+
     //Getters & setters
     public Integer getHp() {
         return hp;

@@ -42,7 +42,8 @@ public class Trap extends Enemy{
         } else {
             tickCount++;
             if (rangeToHero() < 2){
-                //@TODO: Engage in melee combat
+                //@TODO: Engage in melee combat-DONE
+                CombatSystem.meeleCombat(this,getHero());
             }
         }
         if (tickCount < visTime){
