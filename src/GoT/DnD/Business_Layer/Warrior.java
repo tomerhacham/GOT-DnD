@@ -46,6 +46,11 @@ public class Warrior extends Player {
         return true;
     }
 
+    @Override
+    public String toString(){
+        return getName() + " Health: " + getCurrHP() + " Attack damage: " + getAp() + " Defense: " + getDp() + " Level: " + getLevel() + " Experience: " + getXp() + "/" + 50*getLevel() + " Ability cooldown: " + getCooldown();
+    }
+
     //region Observable implement
     @Override
     public void register(Observer observer) {
@@ -65,4 +70,8 @@ public class Warrior extends Player {
 
     }
     //endregion
+
+    public Integer getCooldown() {
+        return cooldown;
+    }
 }
