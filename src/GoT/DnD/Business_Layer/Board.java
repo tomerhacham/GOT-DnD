@@ -10,7 +10,7 @@ import java.awt.geom.Point2D;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Board implements Observable {
+public class Board {
 
     //Fields
     private static Character[][] board;
@@ -117,6 +117,16 @@ public class Board implements Observable {
         }
         return emptySpots;
     }
+    public String BoardToDisplay(){
+        String boardAsString="";
+        for(Character[] line:board){
+            for (Character character:line){
+                boardAsString=boardAsString+character;
+            }
+            boardAsString.concat(System.lineSeparator());
+        }
+        return boardAsString;
+    }
 
     private static GameUnit getGameUnitByPosition(Point point){
         GameUnit toReturn=null;
@@ -162,22 +172,6 @@ public class Board implements Observable {
     }
     //endregion
 
-    //region Observable Implements
-    @Override
-    public void register(Observer observer) {
-
-    }
-
-    @Override
-    public void unregister(Observer observer) {
-
-    }
-
-    @Override
-    public void notifyObserver() {
-
-    }
-    //endregion
 }
 
 

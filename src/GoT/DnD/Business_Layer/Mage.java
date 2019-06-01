@@ -1,5 +1,7 @@
 package GoT.DnD.Business_Layer;
 
+import GoT.DnD.Observer;
+
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.concurrent.ThreadLocalRandom;
@@ -24,18 +26,21 @@ public class Mage extends Player {
 
     @Override
     void levelUp() {
-        if (this.isLevelUp()) {
+        String lvlUpMsg="";
             this.levelUpIsComing();
             manaPool = manaPool + (25 * getLevel());
             currMana = Math.min(currMana + (manaPool / 4), manaPool);
             spellPower = spellPower + (10 * getLevel());
-        }
+        lvlUpMsg.concat("Level up: +"+(10 * getLevel()-1)+" Health, +"+(5 * getLevel()-1)+" Attack, +"+(2 * getLevel()-1)+" Defense, +"+(25 * getLevel())+" maximum mana, "+(10 * getLevel())+" spell power");
+        notifyObserver(lvlUpMsg);
     }
 
     @Override
     void castSpecialAbility(LinkedList<GameUnit> enemies) {
+        String message="";
        if (currMana < cost){
-           //@TODO: Generate an appropriate error message.
+           message.concat(this.getName()+" tried to cast Blizzard, but there was not enough mana");
+           notifyObserver(message);
        }
        else {
            LinkedList<Enemy> nearBy = new LinkedList<>();
@@ -44,11 +49,13 @@ public class Mage extends Player {
                    nearBy.add((Enemy)enemy);
                }
            }
+           message.concat(this.getName()+" cast Blizzard");
+           notifyObserver(message);
            currMana = currMana - cost;
            Integer hits = 0;
            while (hits < hitTimes && !nearBy.isEmpty()){
                Enemy victim = nearBy.get(ThreadLocalRandom.current().nextInt(0, nearBy.size()));
-               meeleCombat(victim);
+               meleeCombat(victim);
                hitTimes++;
            }
        }
@@ -109,4 +116,23 @@ public class Mage extends Player {
     public void setRange(Integer range) {
         this.range = range;
     }
+
+    //region Observable implement
+    @Override
+    public void register(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void unregister(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObserver(Object message) {
+        for (Observer obs:observers){
+            obs.update((String)message);
+        }
+    }
+    //endregion
 }

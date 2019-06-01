@@ -1,5 +1,7 @@
 package GoT.DnD.Business_Layer;
 
+import GoT.DnD.Observer;
+
 import java.awt.*;
 import java.util.LinkedList;
 
@@ -15,16 +17,19 @@ public class Rogue extends Player {
 
     @Override
     void levelUp() {
-        if (this.isLevelUp()){
+        String lvlUpMsg="";
             currEnergy = 100;
             setAp(getAp() + (3 * getLevel()));
-        }
+        lvlUpMsg.concat("Level up: +"+(10 * getLevel()-1)+" Health, +"+((5 * getLevel()-1)+(3 * getLevel()))+" Attack, +"+(2 * getLevel()-1+getLevel())+" Defense,");
+        notifyObserver(lvlUpMsg);
     }
 
     @Override
     void castSpecialAbility(LinkedList<GameUnit> enemies) {
+        String message="";
         if (currEnergy < cost){
-            //@TODO: Generate an appropriate error message.
+            message.concat(this.getName()+" tried to cast Fan of Knives, but there was not enough energy");
+            notifyObserver(message);
         }
         else {
             currEnergy = currEnergy - cost;
@@ -34,8 +39,10 @@ public class Rogue extends Player {
                     nearBy.add((Enemy)enemy);
                 }
             }
+            message.concat(this.getName()+" cast Fan of Knives");
+            notifyObserver(message);
             for (Enemy enemy: nearBy){
-                meeleCombat(enemy);
+                meleeCombat(enemy);
             }
         }
     }
@@ -62,4 +69,22 @@ public class Rogue extends Player {
     public void setCurrEnergy(Integer currEnergy) {
         this.currEnergy = currEnergy;
     }
+
+    //region Observable implement
+    public void register(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void unregister(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObserver(Object message) {
+        for (Observer obs:observers){
+            obs.update((String)message);
+        }
+    }
+    //endregion
 }

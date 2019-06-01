@@ -39,22 +39,16 @@ public class GameSystem implements Observer {
     public void gameTick(){
         //TODO: after action of the Hero from the input
         board.gameTick();
+        update(board.BoardToDisplay());
         }
     public void castSpecialAbility(){
         board.castSpecialAbility();
 
     }
-    //endregion
-
     //region Observer implement
     @Override
-    public void update(Object o) {
-
-
-    }
-    public void update(char c){}
-    public void update(String message){
-        View.Display(message);
+    public void update(Object message) {
+        View.Display((String)message);
     }
     //endregion
 
@@ -65,6 +59,8 @@ public class GameSystem implements Observer {
         }
         View.Display(OpenMessage);
         int PlayerSelection=0; //TODO:controller get  the input
+        View.Display("You selected: "+System.lineSeparator()+OptionsforPick.get(PlayerSelection-1).toString());
+        View.Display("Use w/s/a/d to move."+System.lineSeparator()+"Use e for special ability or q to pass.");
         return OptionsforPick.get(PlayerSelection-1);
     }
 }
