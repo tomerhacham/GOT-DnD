@@ -15,6 +15,19 @@ public class Controller {
 
  */
 
+    public static int choosePlayer(){
+        Scanner reader = new Scanner(System.in);
+        String validInput = "123456";
+        int input;
+        do {
+            while (!reader.hasNextInt()) {
+                reader.next();
+            }
+            input = reader.nextInt();
+        } while(input < 1 || input > 6);
+        return input;
+    }
+
     public static String getInput(){
         Scanner reader = new Scanner(System.in);
         String validInput = "wsadeq";
