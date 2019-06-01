@@ -48,11 +48,13 @@ public abstract class GameUnit {
         }
     }
 
-    public void meeleCombat(GameUnit other){
-        CombatSystem.meeleCombat(this,other);
+    public boolean meleeCombat(GameUnit other){
+        return CombatSystem.meleeCombat(this,other);
     }
 
     //Getters & setters
+    public String getName(){return this.name;}
+
     public Integer getHp() {
         return hp;
     }

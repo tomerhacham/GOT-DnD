@@ -1,12 +1,13 @@
 package GoT.DnD.Business_Layer;
 
 import java.awt.*;
+import java.util.LinkedList;
 
 /**
  * The first piece of code to run once the game will start
  */
 public class Initializer {
-    public static GameSystem initialize(int PlayerSelection ) {
+    public static void initialize(int PlayerSelection ) {
         //TODO: get user input for CLI
         Player Hero=null;
         switch(PlayerSelection){
@@ -23,6 +24,5 @@ public class Initializer {
             case 6: Hero = new Rogue("Bronn",250,35,3,new Point(0,0),60);
                     break;
         }
-        return new GameSystem(Hero);
     }
 }

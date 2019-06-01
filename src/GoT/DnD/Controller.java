@@ -1,6 +1,7 @@
 package GoT.DnD;
 
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class Controller implements Observable {
     //Fields:
@@ -11,20 +12,33 @@ public class Controller implements Observable {
         observers=new LinkedList<Observer>();
     }
 
+    public void getInput(){
+        Scanner reader = new Scanner(System.in);
+        char c = reader.next().charAt(0);
+        while(!reader.hasNext()){
+
+        }
+
+        //TODO: notifiyObserver
+
+    }
+
+    //region Observable implement
     @Override
-    public void register(Observer newObserver) {
-        observers.add(newObserver);
+    public void register(Observer observer) {
+
     }
 
     @Override
     public void unregister(Observer observer) {
-        observers.remove(observer);
+
     }
 
     @Override
-    public void notifyObserver() {
-        for(Observer observer:observers){
-            observer.update();
+    public void notifyObserver(Object message) {
+        for (Observer obs:observers){
+            obs.update((char)message);
         }
     }
+    //endregion
 }

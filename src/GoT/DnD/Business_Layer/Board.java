@@ -1,5 +1,7 @@
 package GoT.DnD.Business_Layer;
 
+import GoT.DnD.Observable;
+import GoT.DnD.Observer;
 import GoT.DnD.Persistent_Layer.ReadText;
 import sun.awt.image.ImageWatched;
 
@@ -8,7 +10,7 @@ import java.awt.geom.Point2D;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Board {
+public class Board implements Observable {
 
     //Fields
     private static Character[][] board;
@@ -38,6 +40,7 @@ public class Board {
     }
 
     //Methods
+    //region Methods of Board class
     public void castSpecialAbility(){
         Hero.castSpecialAbility(GameUnits);
     }
@@ -91,7 +94,7 @@ public class Board {
             //GameUnit attacker = this.getGameUnitByPosition(p); - fucking mess
             //gameunit(thisgameunit).meeleCombat(getGameUnitByPosition(point)) - initiate fight between this gameunit and the other
             //TODO: Engage combat
-            return CombatSystem.meeleCombat(gameUnit,getGameUnitByPosition(destination)); //to be changed
+            return gameUnit.meleeCombat(getGameUnitByPosition(destination)); //to be changed
         } else
             return false;
 
@@ -157,7 +160,24 @@ public class Board {
             }
         }
     }
+    //endregion
 
+    //region Observable Implements
+    @Override
+    public void register(Observer observer) {
+
+    }
+
+    @Override
+    public void unregister(Observer observer) {
+
+    }
+
+    @Override
+    public void notifyObserver() {
+
+    }
+    //endregion
 }
 
 
