@@ -12,7 +12,7 @@ public class Board {
 
     //Fields
     private static Character[][] board;
-    private LinkedList<GameUnit> GameUnits;
+    private static LinkedList<GameUnit> GameUnits;
     Player Hero;
 
     static final char EMPTY = '.';
@@ -61,21 +61,26 @@ public class Board {
     public static Double range(GameUnit gameunit1, GameUnit gameunit2){
         return gameunit1.getPosition().distance(gameunit2.getPosition());
     }
-    public static boolean isLegalMove(Point pos, int move){//maybe we need to get the gameunit that tries to preform the move
-        Point p = new Point(pos.x, pos.y);
+    public static boolean isLegalMove(GameUnit gameUnit, int move){//maybe we need to get the gameunit that tries to preform the move
+        Point p = gameUnit.getPosition();
+        Point destination=null;
         Character gu = null;
         switch (move){
             case 1:
                 gu = board[p.x][p.y+1];
+                destination=new Point(p.x,p.y+1);
                 break;
             case 2:
                 gu = board[p.x][p.y-1];
+                destination=new Point(p.x,p.y-1);
                 break;
             case 3:
                 gu = board[p.x+1][p.y];
+                destination=new Point(p.x+1,p.y);
                 break;
             case 4:
                 gu = board[p.x-1][p.y];
+                destination=new Point(p.x-1,p.y);
                 break;
         }
         if (gu == EMPTY){
@@ -86,7 +91,7 @@ public class Board {
             //GameUnit attacker = this.getGameUnitByPosition(p); - fucking mess
             //gameunit(thisgameunit).meeleCombat(getGameUnitByPosition(point)) - initiate fight between this gameunit and the other
             //TODO: Engage combat
-            return true; //to be changed
+            return CombatSystem.meeleCombat(gameUnit,getGameUnitByPosition(destination)); //to be changed
         } else
             return false;
 
@@ -110,7 +115,7 @@ public class Board {
         return emptySpots;
     }
 
-    private GameUnit getGameUnitByPosition(Point point){
+    private static GameUnit getGameUnitByPosition(Point point){
         GameUnit toReturn=null;
         for(GameUnit gu :GameUnits){
             if (gu.getPosition().equals(point)){
@@ -123,7 +128,7 @@ public class Board {
         for(GameUnit c:GameUnits){
             Enemy gu= (Enemy)c;
             Point prevPoint = gu.getPosition();
-            if(gu.GameUnitType().equals("Trap")){
+            if(gu.getCurrHP()>0 && gu.GameUnitType().equals("Trap")){
                 Trap t=(Trap)gu;
                 if(t.gameTick(getEmptyPlaces())){// in case that the trap have been moved
                     board[prevPoint.x][prevPoint.y]=EMPTY;
@@ -143,11 +148,12 @@ public class Board {
                     }
                 }
             }
-            else{//Monster has been moved
-                if(gu.gameTick()){
+            else if(gu.getCurrHP()>0 && gu.gameTick()){//Monster has been moved
                     board[prevPoint.x][prevPoint.y]=EMPTY;
                     board[gu.getPosition().x][gu.getPosition().y]=gu.getTile();
                 }
+            else{//the gameunit is dead
+                board[gu.getPosition().x][gu.getPosition().y]=EMPTY;
             }
         }
     }

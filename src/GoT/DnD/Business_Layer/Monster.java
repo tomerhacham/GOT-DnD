@@ -23,7 +23,7 @@ public class Monster extends Enemy{
             }
         } else {
             int randomMove = ThreadLocalRandom.current().nextInt(1, 5);
-            if(Board.isLegalMove(this.getPosition(),randomMove)){
+            if(Board.isLegalMove(this,randomMove)){
                 this.Move(randomMove);
                 isMoved=true;
             }
@@ -36,11 +36,11 @@ public class Monster extends Enemy{
     private boolean chaseDown(int axis, int neg, int pos) {
         boolean isMoved=false;
         if (axis > 0){
-            if (Board.isLegalMove(this.getPosition(), neg)) {
+            if (Board.isLegalMove(this, neg)) {
                 this.Move(neg);
                 isMoved=true;
             }
-        } else if (Board.isLegalMove(this.getPosition() , pos)) {
+        } else if (Board.isLegalMove(this , pos)) {
             this.Move(pos);
             isMoved=true;
         }

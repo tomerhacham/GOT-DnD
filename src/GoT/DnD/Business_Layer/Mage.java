@@ -55,8 +55,9 @@ public class Mage extends Player {
     }
 
     @Override
-    public void gameTick() {
+    public boolean gameTick() {
         currMana = Math.min(manaPool, currMana + 1);
+        return true;
     }
 
 
