@@ -46,7 +46,6 @@ public class Monster extends Enemy{
         return isMoved;
     }
 
-    public String GameUnitType(){return "Monster"; }
     //Getter & setter
     public Integer getVr() {
         return vr;
@@ -55,4 +54,6 @@ public class Monster extends Enemy{
     public void setVr(Integer vr) {
         this.vr = vr;
     }
+
+    public String GameUnitType(){return "Monster"; }
 }

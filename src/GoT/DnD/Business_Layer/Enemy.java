@@ -17,6 +17,11 @@ public abstract class Enemy extends GameUnit {
         return this.getPosition().distance(Hero.getPosition());
     }
 
+    public String toString(){
+        return getName() + " Health: " + getCurrHP() + " Attack damage: " + getAp() + " Defense: " + getDp();
+
+    }
+
 
     //Getters & setters
 
