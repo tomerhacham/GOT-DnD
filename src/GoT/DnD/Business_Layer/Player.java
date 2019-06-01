@@ -5,7 +5,6 @@ import java.util.LinkedList;
 
 public abstract class Player extends GameUnit {
     private Integer level;      //Player's level
-    private Integer xp;         //Experience
 
 
     public Player (String name, Integer hp, Integer ap, Integer dp, Point position){
@@ -14,12 +13,12 @@ public abstract class Player extends GameUnit {
     }
 
     protected boolean isLevelUp(){
-        return (xp >= (level * 50));
+        return (getXp() >= (level * 50));
     }
 
     protected void levelUpIsComing(){
         if (isLevelUp()) {
-            xp = xp - (50 * level);
+            setXp(getXp() - (50 * level));
             level++;
             setHp(getHp() + (10 * level));
             setCurrHP(getHp());
@@ -41,5 +40,13 @@ public abstract class Player extends GameUnit {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public void setXP(Integer xp){
+        setXp(xp);
+        if (isLevelUp()){
+            levelUpIsComing();
+            levelUp();
+        }
     }
 }

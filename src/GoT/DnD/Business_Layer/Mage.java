@@ -48,7 +48,7 @@ public class Mage extends Player {
            Integer hits = 0;
            while (hits < hitTimes && !nearBy.isEmpty()){
                Enemy victim = nearBy.get(ThreadLocalRandom.current().nextInt(0, nearBy.size()));
-               //TODO: Engage combat.
+               meeleCombat(victim);
                hitTimes++;
            }
        }
