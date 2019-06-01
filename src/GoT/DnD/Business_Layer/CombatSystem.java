@@ -32,8 +32,6 @@ class CombatSystem implements Observable {
             if (defender.getCurrHP() <= 0) {
                 attacker.setXp(attacker.getXp() + defender.getXp());  //added experience point of the defender to the attacker
                 message.concat(defender.getName()+"died. "+attacker.getName()+" gained "+defender.getXp()+" experience!"+System.lineSeparator());
-                //TODO: mark this GameUnit as dead, can be with flag
-                //TODO: handle in case that the hero is dead to end the game' may need to use observer here
             }
         }
         else{

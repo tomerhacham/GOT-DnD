@@ -1,4 +1,5 @@
 package GoT.DnD.Business_Layer;
+import GoT.DnD.Controller;
 import GoT.DnD.Observable;
 import GoT.DnD.Observer;
 import GoT.DnD.View;
@@ -16,6 +17,11 @@ public class GameSystem implements Observer {
     private LinkedList<Player> OptionsforPick;
     private LinkedList<Observer> observers;
     private CombatSystem combatSystem;
+
+    private static final int UP = 1;
+    private static final int DOWN = 2;
+    private static final int RIGHT = 3;
+    private static final int LEFT = 4;
 
     //Constructors
     public GameSystem(){
@@ -38,6 +44,26 @@ public class GameSystem implements Observer {
     //region Methods
     public void gameTick(){
         //TODO: after action of the Hero from the input
+        String action = Controller.getInput();
+        switch (action){
+            case "q":
+                break;
+            case "e":
+                castSpecialAbility();
+                break;
+            case "w":
+                board.MoveHero(UP);
+                break;
+            case "s":
+                board.MoveHero(DOWN);
+                break;
+            case "d":
+                board.MoveHero(RIGHT);
+                break;
+            case "a":
+                board.MoveHero(LEFT);
+                break;
+        }
         board.gameTick();
         if(board.getGameUnits().size()==0 && Hero.getCurrHP()>0) {//all the monster are dead
             if(board.Level<4){
@@ -74,7 +100,7 @@ public class GameSystem implements Observer {
             OpenMessage.concat(player.toString()+System.lineSeparator());
         }
         View.Display(OpenMessage);
-        int PlayerSelection=0; //TODO:controller get  the input
+        int PlayerSelection = Controller.choosePlayer();
         View.Display("You selected: "+System.lineSeparator()+OptionsforPick.get(PlayerSelection-1).toString());
         View.Display("Use w/s/a/d to move."+System.lineSeparator()+"Use e for special ability or q to pass.");
         return OptionsforPick.get(PlayerSelection-1);
