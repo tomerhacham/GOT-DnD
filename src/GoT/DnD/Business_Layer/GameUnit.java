@@ -34,16 +34,16 @@ public abstract class GameUnit {
     public void Move(int direction){
         switch (direction){
             case 1:
-                this.setPosition(this.getPosition().x, this.getPosition().y + 1);
+                this.setPosition(this.getPosition().x - 1, this.getPosition().y);
                 break;
             case 2:
-                this.setPosition(this.getPosition().x, this.getPosition().y - 1);
-                break;
-            case 3:
                 this.setPosition(this.getPosition().x + 1, this.getPosition().y);
                 break;
+            case 3:
+                this.setPosition(this.getPosition().x, this.getPosition().y + 1);
+                break;
             case 4:
-                this.setPosition(this.getPosition().x - 1, this.getPosition().y);
+                this.setPosition(this.getPosition().x, this.getPosition().y - 1);
                 break;
         }
     }

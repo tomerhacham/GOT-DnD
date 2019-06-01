@@ -27,7 +27,7 @@ public class Board {
         this.Level=level;
         int x=0;
         int y=0;
-        List<String> boardScheme = ReadText.readAllLines("Level "+this.Level);
+        List<String> boardScheme = ReadText.readAllLines("level "+this.Level+".txt");
         board = new Character[boardScheme.size()][boardScheme.get(1).length()]; //Initialize board in the required dimension
         GameUnits = BoardSchemeParser.ParseScheme(boardScheme,Hero);
         this.Hero=(Player)GameUnits.getFirst();
@@ -35,9 +35,10 @@ public class Board {
         for (String line:boardScheme) {
             for (char tile:line.toCharArray()) {
                 board[x][y]=tile;
-                x++;
+                y++;
             }
-            y++;
+            y=0;
+            x++;
         }
     }
 
@@ -72,20 +73,20 @@ public class Board {
         Character gu = null;
         switch (move){
             case 1:
-                gu = board[p.x][p.y+1];
-                destination=new Point(p.x,p.y+1);
+                gu = board[p.x-1][p.y];
+                destination=new Point(p.x-1,p.y);
                 break;
             case 2:
-                gu = board[p.x][p.y-1];
-                destination=new Point(p.x,p.y-1);
-                break;
-            case 3:
                 gu = board[p.x+1][p.y];
                 destination=new Point(p.x+1,p.y);
                 break;
+            case 3:
+                gu = board[p.x][p.y+1];
+                destination=new Point(p.x,p.y);
+                break;
             case 4:
-                gu = board[p.x-1][p.y];
-                destination=new Point(p.x-1,p.y);
+                gu = board[p.x][p.y-1];
+                destination=new Point(p.x,p.y-1);
                 break;
         }
         if (gu == EMPTY){
@@ -136,7 +137,7 @@ public class Board {
                 }
 
             }
-            boardAsString.concat(System.lineSeparator());
+            boardAsString=boardAsString.concat(System.lineSeparator());
         }
         return boardAsString;
     }

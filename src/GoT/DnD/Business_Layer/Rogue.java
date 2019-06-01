@@ -20,7 +20,7 @@ public class Rogue extends Player {
         String lvlUpMsg="";
             currEnergy = 100;
             setAp(getAp() + (3 * getLevel()));
-        lvlUpMsg.concat("Level up: +"+(10 * getLevel()-1)+" Health, +"+((5 * getLevel()-1)+(3 * getLevel()))+" Attack, +"+(2 * getLevel()-1+getLevel())+" Defense,");
+        lvlUpMsg=lvlUpMsg.concat("Level up: +"+(10 * getLevel()-1)+" Health, +"+((5 * getLevel()-1)+(3 * getLevel()))+" Attack, +"+(2 * getLevel()-1+getLevel())+" Defense,");
         notifyObserver(lvlUpMsg);
     }
 
@@ -28,7 +28,7 @@ public class Rogue extends Player {
     void castSpecialAbility(LinkedList<GameUnit> enemies) {
         String message="";
         if (currEnergy < cost){
-            message.concat(this.getName()+" tried to cast Fan of Knives, but there was not enough energy");
+            message= message.concat(this.getName()+" tried to cast Fan of Knives, but there was not enough energy");
             notifyObserver(message);
         }
         else {
@@ -39,7 +39,7 @@ public class Rogue extends Player {
                     nearBy.add((Enemy)enemy);
                 }
             }
-            message.concat(this.getName()+" cast Fan of Knives");
+            message= message.concat(this.getName()+" cast Fan of Knives");
             notifyObserver(message);
             for (Enemy enemy: nearBy){
                 meleeCombat(enemy);

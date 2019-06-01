@@ -22,7 +22,7 @@ public class Warrior extends Player {
             remaining = 0;
             setHp(getHp() + (5 * getLevel()));
             setDp(getDp() + getLevel());
-        lvlUpMsg.concat("Level up: +"+((10 * getLevel()-1)+(5 * getLevel()))+" Health, +"+(5 * getLevel()-1)+" Attack, +"+(2 * getLevel()-1+getLevel())+" Defense,");
+        lvlUpMsg=lvlUpMsg.concat("Level up: +"+((10 * getLevel()-1)+(5 * getLevel()))+" Health, +"+(5 * getLevel()-1)+" Attack, +"+(2 * getLevel()-1+getLevel())+" Defense,");
         notifyObserver(lvlUpMsg);
     }
 
@@ -30,12 +30,12 @@ public class Warrior extends Player {
     void castSpecialAbility(LinkedList<GameUnit> enemies) {
         String message="";
         if (remaining > 0){
-            message.concat(this.getName()+" tried to cast Heal, but there is a cool-down: "+ remaining);
+            message= message.concat(this.getName()+" tried to cast Heal, but there is a cool-down: "+ remaining);
         }
         else {
             remaining = cooldown;
             setCurrHP(Math.min(getCurrHP() + (2 * getDp()), getHp()));
-            message.concat(this.getName()+" cast Heal");
+            message= message.concat(this.getName()+" cast Heal");
         }
         notifyObserver(message);
     }

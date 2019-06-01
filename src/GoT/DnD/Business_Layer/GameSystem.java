@@ -40,10 +40,8 @@ public class GameSystem implements Observer {
         CombatSystem combatSystem = new CombatSystem();
         combatSystem.register(this);
     }
-
     //region Methods
     public void gameTick(){
-        //TODO: after action of the Hero from the input
         String action = Controller.getInput();
         switch (action){
             case "q":
@@ -74,9 +72,6 @@ public class GameSystem implements Observer {
             }
         }
         update(board.BoardToDisplay());
-        if(Hero.getCurrHP()<=0){
-            System.exit(0);
-            }
         }
 
     public void castSpecialAbility(){
@@ -96,13 +91,28 @@ public class GameSystem implements Observer {
 
     public Player initialize(){
         String OpenMessage="Select Player: "+System.lineSeparator();
+        int index=1;
         for (Player player:OptionsforPick){
-            OpenMessage.concat(player.toString()+System.lineSeparator());
+            OpenMessage=OpenMessage.concat(index+". "+player.toString()+System.lineSeparator());
+            index++;
         }
+
         View.Display(OpenMessage);
         int PlayerSelection = Controller.choosePlayer();
         View.Display("You selected: "+System.lineSeparator()+OptionsforPick.get(PlayerSelection-1).toString());
         View.Display("Use w/s/a/d to move."+System.lineSeparator()+"Use e for special ability or q to pass.");
         return OptionsforPick.get(PlayerSelection-1);
     }
+    public void StartGameFlow (){
+        update(board.BoardToDisplay());
+        while (Hero.getCurrHP() > 0){
+            gameTick();
+        }
+    }
+
+    public static void main(String[] args) {
+        GameSystem g = new GameSystem();
+        g.StartGameFlow();
+    }
 }
+

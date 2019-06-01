@@ -14,11 +14,12 @@ public class ReadText {
         Path path = FileManager.LocatePath();
         Path s=Paths.get(path.toAbsolutePath().toString(),"\\src\\GoT\\DnD\\Persistent_Layer\\Levels\\");
         Path p = Paths.get(s.toAbsolutePath().toString(),level);
+        Path newp = Paths.get(System.getProperty("user.dir")+"\\src\\GoT\\DnD\\Persistent_Layer\\Levels\\"+level);
         List<String> lines = Collections.emptyList();
         try {
-            lines = Files.readAllLines(p);
+            lines = Files.readAllLines(newp);
         } catch (FileNotFoundException e) {
-            System.out.println("File not found " + p);
+            System.out.println("File not found " + newp);
         } catch (IOException e) {
             System.out.println(e.getMessage() + "\n" + e.getStackTrace());
         }

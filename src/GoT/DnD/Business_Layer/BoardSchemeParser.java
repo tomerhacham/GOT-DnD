@@ -30,6 +30,7 @@ public class BoardSchemeParser {
                 }
                 y++;
             }
+            y=0;
             x++;
         }
         return GameUnits;
@@ -44,7 +45,7 @@ public class BoardSchemeParser {
      */
     public static GameUnit GameUnitBuilder(char tile,Point position,GameUnit Hero){
         GameUnit unit=null;
-        if(tile!='B' && tile!='Q' && tile!='D'){
+        if(tile=='B' || tile=='Q' || tile=='D'){
             switch (tile){
                 case 'B': unit = new Trap("Bonus Trap",1,1,1,position,250,tile,5,6,2 ,Hero);
                         break;
