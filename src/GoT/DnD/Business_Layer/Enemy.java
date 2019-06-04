@@ -22,6 +22,9 @@ public abstract class Enemy extends GameUnit {
         return getName() + " Health: " + getCurrHP() + " Attack damage: " + getAp() + " Defense: " + getDp();
 
     }
+    public boolean isEnemy(){
+        return true;
+    }
 
 
     //Getters & setters

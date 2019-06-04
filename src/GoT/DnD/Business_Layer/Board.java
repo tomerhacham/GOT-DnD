@@ -70,7 +70,7 @@ public class Board {
     }
     public static boolean isLegalMove(GameUnit gameUnit, int move){//maybe we need to get the gameunit that tries to preform the move
         Point p = new Point(gameUnit.getPosition());
-        String unitType = gameUnit.GameUnitType();
+        //String unitType = gameUnit.GameUnitType();
         Character gu=null;
         Point destination=null;
         GameUnit des = null;
@@ -93,7 +93,11 @@ public class Board {
                 break;
         }
         des = Board.getGameUnitByPosition(destination);
-        if (des == null)
+        if (des==null){
+            System.out.println("null");}
+        else{
+        System.out.println(des.toString());}
+        if (des == null) //no creature is in the spot
         {
             if(gu!=WALL){
                 return true;
@@ -102,28 +106,13 @@ public class Board {
                 return false;
             }
         }
-        else if((des.GameUnitType().equals("Trap") || des.GameUnitType().equals("Monster"))) {
-            if(gameUnit.GameUnitType().equals("Player"))
-            {
-                System.out.println("Hero-Monster fight");
-                //gameUnit.meleeCombat(des);
-                /*if (des.getCurrHP()<=0){
-                    board[des.getPosition().x][des.getPosition().y]=EMPTY;
-                    GameUnits.remove(des);
-                }*/
-                return gameUnit.meleeCombat(des);
-            }
-            else if(((gameUnit.GameUnitType().equals("Trap") || gameUnit.GameUnitType().equals("Monster"))) && des.GameUnitType().equals("Player")){
-                System.out.println("Monster-Hero fight");
-                return gameUnit.meleeCombat(des);
-            }
-            else{
-                return false;
-            }
-
-        }
-        else{
+        else if(!gameUnit.isEnemy() || !des.isEnemy()) { //both of the gameUnits are not Enemy - one is the Player
+            System.out.println("FIGHTTT");
             return gameUnit.meleeCombat(des);
+        }
+        else{//meaning both of the GameUnits are Enemies
+            System.out.println("No-Fight");
+            return false;
         }
         //region
 

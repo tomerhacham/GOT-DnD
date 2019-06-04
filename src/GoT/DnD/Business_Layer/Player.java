@@ -31,6 +31,9 @@ public abstract class Player extends GameUnit implements Observable {
 
         }
     }
+    public boolean isEnemy(){
+        return false;
+    }
 
     //Abstract methods
     abstract void levelUp();

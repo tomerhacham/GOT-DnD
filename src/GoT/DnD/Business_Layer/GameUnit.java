@@ -28,6 +28,7 @@ public abstract class GameUnit {
 
     //Abstract methods
     abstract boolean gameTick();
+    abstract boolean isEnemy();
     public abstract String GameUnitType();
 
     //Methods

@@ -17,6 +17,7 @@ class CombatSystem implements Observable {
      * @return
      */
     public static boolean meleeCombat(GameUnit attacker, GameUnit defender){
+        boolean isDead=false;
         String message="";
         message=message.concat(attacker.getName()+" engaged in battle with "+defender.getName()+":"+System.lineSeparator());
         message=message.concat(attacker.toString()+System.lineSeparator());
@@ -30,6 +31,7 @@ class CombatSystem implements Observable {
             message=message.concat(attacker.getName()+" hits "+defender.getName()+" for "+dif+" damage."+System.lineSeparator());
             defender.setCurrHP(defender.getCurrHP() - dif);
             if (defender.getCurrHP() <= 0) {
+                isDead=true;
                 attacker.setXp(attacker.getXp() + defender.getXp());  //added experience point of the defender to the attacker
                 message=message.concat(defender.getName()+" died. "+attacker.getName()+" gained "+defender.getXp()+" experience!"+System.lineSeparator());
             }
@@ -42,7 +44,7 @@ class CombatSystem implements Observable {
         for(Observer obs:observers){
             obs.update((String)message);
         }
-        return false;
+        return isDead;
     }
     //region Observable implement
     @Override
