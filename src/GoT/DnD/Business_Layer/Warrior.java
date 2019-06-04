@@ -42,34 +42,14 @@ public class Warrior extends Player {
 
     @Override
     public boolean gameTick() {
-        remaining = remaining - 1;
+        remaining = Math.max(0,remaining-1);
         return true;
     }
 
     @Override
     public String toString(){
-        return getName() + " Health: " + getCurrHP() + " Attack damage: " + getAp() + " Defense: " + getDp() + " Level: " + getLevel() + " Experience: " + getXp() + "/" + 50*getLevel() + " Ability cooldown: " + getCooldown();
+        return getName() + "        Health: " + getCurrHP() + "        Attack damage: " + getAp() + "        Defense: " + getDp() + "        Level: " + getLevel() + "        Experience: " + getXp() + "/" + 50*getLevel() + "        Ability cooldown: " + getCooldown();
     }
-
-    //region Observable implement
-    @Override
-    public void register(Observer observer) {
-      observers.add(observer);
-    }
-
-    @Override
-    public void unregister(Observer observer) {
-        observers.remove(observer);
-    }
-
-    @Override
-    public void notifyObserver(Object message) {
-        for (Observer obs:observers){
-            obs.update((String)message);
-        }
-
-    }
-    //endregion
 
     public Integer getCooldown() {
         return cooldown;

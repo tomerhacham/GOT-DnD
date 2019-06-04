@@ -62,7 +62,8 @@ public class Board {
     }
 
     public void gameTick() {
-        for (GameUnit gu : GameUnits) {
+        for(int i=1;i<GameUnits.size();i++){
+            GameUnit gu = GameUnits.get(i);
             Point prevPoint = new Point(gu.getPosition());
                 if(gu.gameTick())
                 {
@@ -75,6 +76,11 @@ public class Board {
                         board[gu.getPosition().x][gu.getPosition().y]=EMPTY;
                     }
                 }
+            }
+        if(Hero.isVisible()){
+            board[Hero.getPosition().x][Hero.getPosition().y]=Hero.getTile();}
+        else{
+            board[Hero.getPosition().x][Hero.getPosition().y]='X';
             }
         UpdateAliveGameUnits();
     }

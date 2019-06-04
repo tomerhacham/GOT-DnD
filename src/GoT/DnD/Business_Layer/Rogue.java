@@ -25,7 +25,9 @@ public class Rogue extends Player {
     }
 
     @Override
-    void castSpecialAbility(LinkedList<GameUnit> enemies) {
+    void castSpecialAbility(LinkedList<GameUnit> enemies1) {
+        LinkedList<GameUnit> enemies=new LinkedList<>(enemies1);
+        enemies.removeFirst();
         String message="";
         enemies.removeFirst();          //Remove hero himself from list
         if (currEnergy < cost){
@@ -73,23 +75,6 @@ public class Rogue extends Player {
 
     @Override
     public String toString(){
-        return this.getName()+" Health:  "+getCurrHP()+" Attack damage: "+getAp()+" Defense: "+getDp()+" Level: "+getLevel()+ " Experience: "+getXp()+"/"+(50*getLevel())+" Energy: "+getCurrEnergy()+"/"+100;
+        return this.getName()+"        Health:  "+getCurrHP()+"        Attack damage: "+getAp()+"        Defense: "+getDp()+"        Level: "+getLevel()+ "        Experience: "+getXp()+"/"+(50*getLevel())+"        Energy: "+getCurrEnergy()+"/"+100;
     }
-    //region Observable implement
-    public void register(Observer observer) {
-        observers.add(observer);
-    }
-
-    @Override
-    public void unregister(Observer observer) {
-        observers.remove(observer);
-    }
-
-    @Override
-    public void notifyObserver(Object message) {
-        for (Observer obs:observers){
-            obs.update((String)message);
-        }
-    }
-    //endregion
 }

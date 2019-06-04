@@ -36,12 +36,14 @@ public class GameSystem implements Observer {
         OptionsforPick.add(new Rogue("Bronn",250,35,3,new Point(0,0),60,'@'));
         //endregion
         this.Hero=initialize();
+        this.Hero.register(this);
         board = new Board(1,Hero);
         CombatSystem combatSystem = new CombatSystem();
         combatSystem.register(this);
     }
     //region Methods
     public void gameTick(){
+        Hero.gameTick();
         String action = Controller.getInput();
         switch (action){
             case "q":

@@ -36,8 +36,9 @@ public class Mage extends Player {
     }
 
     @Override
-    void castSpecialAbility(LinkedList<GameUnit> enemies) {
+    void castSpecialAbility(LinkedList<GameUnit> enemies1) {
         String message="";
+        LinkedList<GameUnit> enemies=new LinkedList<>(enemies1);
         enemies.removeFirst();              //Remove hero himself from list
        if (currMana < cost){
            message=message.concat(this.getName()+" tried to cast Blizzard, but there was not enough mana");
@@ -57,7 +58,7 @@ public class Mage extends Player {
            while (hits < hitTimes && !nearBy.isEmpty()){
                Enemy victim = nearBy.get(ThreadLocalRandom.current().nextInt(0, nearBy.size()));
                meleeCombat(victim);
-               hitTimes++;
+               hits++;
            }
        }
     }
@@ -120,25 +121,6 @@ public class Mage extends Player {
 
     @Override
     public String toString(){
-        return this.getName()+" Health:  "+getCurrHP()+" Attack damage: "+getAp()+" Defense: "+getDp()+" Level: "+getLevel()+ " Experience: "+getXp()+"/"+(50*getLevel())+" SpellPower: "+getSpellPower()+" Mana: "+getCurrMana()+"/"+getManaPool();
+        return this.getName()+"        Health:  "+getCurrHP()+"        Attack damage: "+getAp()+"        Defense: "+getDp()+"        Level: "+getLevel()+ "        Experience: "+getXp()+"/"+(50*getLevel())+"        SpellPower: "+getSpellPower()+"        Mana: "+getCurrMana()+"/"+getManaPool();
     }
-
-    //region Observable implement
-    @Override
-    public void register(Observer observer) {
-        observers.add(observer);
-    }
-
-    @Override
-    public void unregister(Observer observer) {
-        observers.remove(observer);
-    }
-
-    @Override
-    public void notifyObserver(Object message) {
-        for (Observer obs:observers){
-            obs.update((String)message);
-        }
-    }
-    //endregion
 }
