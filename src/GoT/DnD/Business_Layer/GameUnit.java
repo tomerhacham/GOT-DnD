@@ -10,13 +10,15 @@ public abstract class GameUnit {
     private Integer dp;              //Defense Points
     private Point position;          //Position (x,y) on 2D board
     private Integer xp;             //Experience value
+    private boolean isVisible=true;
+    private char tile;
 
     static final int UP = 1;
     static final int DOWN = 2;
     static final int RIGHT = 3;
     static final int LEFT = 4;
 
-    public GameUnit(String name, Integer hp, Integer ap, Integer dp, Point position, int xp) {
+    public GameUnit(String name, Integer hp, Integer ap, Integer dp, Point position, int xp, char tile) {
         this.name = name;
         this.hp = hp;
         currHP = hp;
@@ -24,12 +26,15 @@ public abstract class GameUnit {
         this.dp = dp;
         this.position = position;
         this.xp=xp;
+        this.tile=tile;
     }
 
     //Abstract methods
     abstract boolean gameTick();
     abstract boolean isEnemy();
+    abstract boolean stepOn(GameUnit gu);
     public abstract String GameUnitType();
+
 
     //Methods
     public void Move(int direction){
@@ -103,4 +108,20 @@ public abstract class GameUnit {
     public Integer getXp() {return xp;}
 
     public void setXp(Integer xp) {this.xp = xp;}
+
+    public boolean isVisible() {
+        return isVisible;
+    }
+
+    public void setVisible(boolean visible) {
+        isVisible = visible;
+    }
+
+    public char getTile() {
+        return tile;
+    }
+
+    public void setTile(char tile) {
+        this.tile = tile;
+    }
 }

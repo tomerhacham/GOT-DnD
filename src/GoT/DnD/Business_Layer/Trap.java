@@ -12,7 +12,6 @@ public class Trap extends Enemy{
     private Integer reloTime;           //Ticks until trap relocates
     private Integer visTime;            //Visibility time. Ticks until trap becomes invisible
     private Integer tickCount;          //# of ticks since last relocation
-    private boolean isVisible;
 
     public Trap(String name, Integer hp, Integer ap, Integer dp, Point position, Integer xp, char tile, Integer reloRange, Integer reloTime, Integer visTime,GameUnit Hero) {
         super(name, hp, ap, dp, position, xp, tile, Hero);
@@ -20,11 +19,10 @@ public class Trap extends Enemy{
         this.reloTime = reloTime;
         this.visTime = visTime;
         tickCount = 0;
-        isVisible = true;
     }
 
     public boolean gameTick(){
-        return true;
+        return this.gameTick(Board.getEmptyPlaces());
     }
 
     public boolean gameTick(List<Point> emptyPlaces) {
@@ -46,22 +44,15 @@ public class Trap extends Enemy{
             }
         }
         if (tickCount < visTime){
-            isVisible = true;
+            setVisible(true);
 
         } else {
-            isVisible = false;
+            setVisible(false);
         }
         return  isMoved;
     }
 
     //Getters & setters
-    public boolean getIsVisible() {
-        return isVisible;
-    }
-
-    public void setIsVisable(boolean isVisible) {
-        this.isVisible = isVisible;
-    }
 
     public String GameUnitType(){return "Trap"; }
 }

@@ -28,12 +28,12 @@ public class GameSystem implements Observer {
         this.observers=new LinkedList<Observer>();
         //region Player Options
         OptionsforPick=new LinkedList<>();
-        OptionsforPick.add(new Warrior ("Jon Snow",300, 30,4,new Point(0,0),6));
-        OptionsforPick.add(new Warrior ("The Hound",400, 20,6,new Point(0,0),4));
-        OptionsforPick.add(new Mage("Melisandre",160,10,1,new Point(0,0),40,300,30,5,6));
-        OptionsforPick.add(new Mage("Thoros of Myr",250,25,3,new Point(0,0),15,150,50,3,3));
-        OptionsforPick.add(new Rogue("Arya Stark",150,40,2,new Point(0,0),20));
-        OptionsforPick.add(new Rogue("Bronn",250,35,3,new Point(0,0),60));
+        OptionsforPick.add(new Warrior ("Jon Snow",300, 30,4,new Point(0,0),6,'@'));
+        OptionsforPick.add(new Warrior ("The Hound",400, 20,6,new Point(0,0),4,'@'));
+        OptionsforPick.add(new Mage("Melisandre",160,10,1,new Point(0,0),40,300,30,5,6,'@'));
+        OptionsforPick.add(new Mage("Thoros of Myr",250,25,3,new Point(0,0),15,150,50,3,3,'@'));
+        OptionsforPick.add(new Rogue("Arya Stark",150,40,2,new Point(0,0),20,'@'));
+        OptionsforPick.add(new Rogue("Bronn",250,35,3,new Point(0,0),60,'@'));
         //endregion
         this.Hero=initialize();
         board = new Board(1,Hero);
@@ -65,6 +65,7 @@ public class GameSystem implements Observer {
         board.gameTick();
         if(board.getGameUnits().size()==0 && Hero.getCurrHP()>0) {//all the monster are dead
             if(board.Level<4){
+                update("Good Job, get ready for the next mission!");
                 this.LoadLevel();
             }
             else{
@@ -72,7 +73,7 @@ public class GameSystem implements Observer {
             }
         }
         update(board.BoardToDisplay());
-        }
+    }
 
     public void castSpecialAbility(){
         board.castSpecialAbility();

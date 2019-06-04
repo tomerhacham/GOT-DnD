@@ -3,13 +3,11 @@ package GoT.DnD.Business_Layer;
 import java.awt.*;
 
 public abstract class Enemy extends GameUnit {
-    private char tile;
     private GameUnit Hero;
 
     public Enemy(String name, Integer hp, Integer ap, Integer dp, Point position, Integer xp, char tile, GameUnit Hero){
-        super(name, hp, ap, dp, position,xp);
+        super(name, hp, ap, dp, position,xp,tile);
         this.Hero=Hero;
-        this.tile = tile;
     }
 
     //Methods
@@ -25,17 +23,17 @@ public abstract class Enemy extends GameUnit {
     public boolean isEnemy(){
         return true;
     }
-
+    public boolean stepOn(GameUnit gu){
+        if(gu.isEnemy()){
+            return false;
+        }
+        else{
+            return gu.meleeCombat(this);
+        }
+    }
 
     //Getters & setters
 
-    public char getTile() {
-        return tile;
-    }
-
-    public void setTile(char tile) {
-        this.tile = tile;
-    }
 
     public GameUnit getHero() {
         return Hero;

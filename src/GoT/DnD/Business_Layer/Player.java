@@ -10,8 +10,8 @@ public abstract class Player extends GameUnit implements Observable {
     private Integer level;      //Player's level
     protected LinkedList<Observer> observers;
 
-    public Player (String name, Integer hp, Integer ap, Integer dp, Point position){
-        super(name, hp, ap, dp, position,0);
+    public Player (String name, Integer hp, Integer ap, Integer dp, Point position,char tile){
+        super(name, hp, ap, dp, position,0,tile);
         this.level = 1;
         observers=new LinkedList<>();
     }
@@ -38,12 +38,19 @@ public abstract class Player extends GameUnit implements Observable {
     //Abstract methods
     abstract void levelUp();
     abstract void castSpecialAbility(LinkedList<GameUnit> enemies);
-
+    public boolean stepOn(GameUnit enemy){
+        if(enemy.isEnemy()){
+            return enemy.meleeCombat(this);
+        }
+        else{
+            return false;
+        }
+    }
     public String GameUnitType(){return "Player"; }
 
     //Getters & setters
     public void setCurrHP(Integer currHP) {
-        this.setCurrHP(currHP);
+        super.setCurrHP(currHP);
         if (currHP<=0){
             notifyObserver(this.getName()+" died."+System.lineSeparator()+"You Lost.");
         }

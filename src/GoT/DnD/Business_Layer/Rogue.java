@@ -9,8 +9,8 @@ public class Rogue extends Player {
     private Integer cost;
     private Integer currEnergy;
 
-    public Rogue(String name, Integer hp, Integer ap, Integer dp, Point position, Integer cost){
-        super(name, hp, ap, dp, position);
+    public Rogue(String name, Integer hp, Integer ap, Integer dp, Point position, Integer cost,char tile){
+        super(name, hp, ap, dp, position,tile);
         this.cost = cost;
         this.currEnergy = 100;
     }
@@ -27,6 +27,7 @@ public class Rogue extends Player {
     @Override
     void castSpecialAbility(LinkedList<GameUnit> enemies) {
         String message="";
+        enemies.removeFirst();          //Remove hero himself from list
         if (currEnergy < cost){
             message= message.concat(this.getName()+" tried to cast Fan of Knives, but there was not enough energy");
             notifyObserver(message);

@@ -14,8 +14,8 @@ public class Mage extends Player {
     private Integer hitTimes;
     private Integer range;
 
-    public Mage(String name, Integer hp, Integer ap, Integer dp, Point position, Integer spellPower, Integer manaPool, Integer cost, Integer hitTimes, Integer range){
-        super(name, hp, ap, dp, position);
+    public Mage(String name, Integer hp, Integer ap, Integer dp, Point position, Integer spellPower, Integer manaPool, Integer cost, Integer hitTimes, Integer range,char tile){
+        super(name, hp, ap, dp, position,tile);
         this.spellPower = spellPower;
         this.manaPool = manaPool;
         this.currMana = manaPool / 4;
@@ -38,6 +38,7 @@ public class Mage extends Player {
     @Override
     void castSpecialAbility(LinkedList<GameUnit> enemies) {
         String message="";
+        enemies.removeFirst();              //Remove hero himself from list
        if (currMana < cost){
            message=message.concat(this.getName()+" tried to cast Blizzard, but there was not enough mana");
            notifyObserver(message);

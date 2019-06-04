@@ -17,15 +17,26 @@ public class Monster extends Enemy{
             int dx = this.getPosition().x - super.getHero().getPosition().x;
             int dy = this.getPosition().y - super.getHero().getPosition().y;
             if (Math.abs(dx) > Math.abs(dy)) {
-                isMoved = chaseDown(dx, LEFT, RIGHT);
+                isMoved = chaseDown(dx, UP, DOWN);
             } else {
-                isMoved = chaseDown(dy, UP, DOWN);
+                isMoved = chaseDown(dy, LEFT, RIGHT);
             }
         } else {
             int randomMove = ThreadLocalRandom.current().nextInt(1, 5);
-            if(Board.isLegalMove(this,randomMove)){
+            int legalSituation=Board.isLegalMove(this,randomMove);
+            if(legalSituation==0){
                 this.Move(randomMove);
                 isMoved=true;
+            }
+            else if(legalSituation==2){
+                GameUnit gameUnitAtDes = Board.getGameUnitByPosition(Board.getPointByDirection(this.getPosition(),randomMove));
+                if(gameUnitAtDes.stepOn(this)){
+                    this.Move(randomMove);
+                    isMoved=true;
+                }
+                else{
+                    isMoved=false;
+                }
             }
         }
         return isMoved;
@@ -35,13 +46,40 @@ public class Monster extends Enemy{
     private boolean chaseDown(int axis, int neg, int pos) {
         boolean isMoved=false;
         if (axis > 0){
-            if (Board.isLegalMove(this, neg)) {
+            int legalSituation=Board.isLegalMove(this, neg);
+            if (legalSituation==0) {
                 this.Move(neg);
                 isMoved=true;
             }
-        } else if (Board.isLegalMove(this , pos)) {
-            this.Move(pos);
-            isMoved=true;
+            else if(legalSituation==2){
+                GameUnit gameUnitAtDes = Board.getGameUnitByPosition(Board.getPointByDirection(this.getPosition(),neg));
+                if(gameUnitAtDes.stepOn(this)){
+                    this.Move(neg);
+                    isMoved=true;
+                }
+                else{
+                    isMoved=false;
+                }
+
+            }
+        }
+        else{
+            int legalSituation=Board.isLegalMove(this, pos);
+            if (legalSituation==0) {
+                this.Move(pos);
+                isMoved=true;
+            }
+            else if(legalSituation==2){
+                GameUnit gameUnitAtDes = Board.getGameUnitByPosition(Board.getPointByDirection(this.getPosition(),pos));
+                if(gameUnitAtDes.stepOn(this)){
+                    this.Move(pos);
+                    isMoved=true;
+                }
+                else{
+                    isMoved=false;
+                }
+
+            }
         }
         return isMoved;
     }
