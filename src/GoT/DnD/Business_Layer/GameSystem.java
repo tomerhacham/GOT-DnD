@@ -65,7 +65,7 @@ public class GameSystem implements Observer {
                 break;
         }
         board.gameTick();
-        if(board.getGameUnits().size()==0 && Hero.getCurrHP()>0) {//all the monster are dead
+        if(board.getGameUnits().size()==1 && Hero.getCurrHP()>0) {//all the monster are dead
             if(board.Level<4){
                 update("Good Job, get ready for the next mission!");
                 this.LoadLevel();
