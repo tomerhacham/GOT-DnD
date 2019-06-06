@@ -17,7 +17,7 @@ public abstract class Enemy extends GameUnit {
 
     @Override
     public String toString(){
-        return getName() + " Health: " + getCurrHP() + " Attack damage: " + getAp() + " Defense: " + getDp();
+        return getName() + "        Health: " + getCurrHP() + "        Attack damage: " + getAp() + "        Defense: " + getDp();
 
     }
     public boolean isEnemy(){

@@ -68,12 +68,14 @@ public class GameSystem implements Observer {
                     break;
             }
             board.gameTick();
+        System.out.println(board.Level+"  "+(levelNames.size()+1));
             if (board.getGameUnits().size() == 1 && Hero.getCurrHP() > 0) {//all the monster are dead
-                if (board.Level < levelNames.size() + 1) {
+                if (board.Level < levelNames.size()) {
                     update("Good Job, get ready for the next mission!");
                     this.LoadLevel();
                 } else {
                     update("Game is finished. You won!");
+                    System.exit(0);
                 }
             }
             update(board.BoardToDisplay());
@@ -106,7 +108,6 @@ public class GameSystem implements Observer {
         int PlayerSelection = Controller.choosePlayer();
         View.Display("You selected: "+System.lineSeparator()+OptionsforPick.get(PlayerSelection-1).toString());
         View.Display("Use w/s/a/d to move."+System.lineSeparator()+"Use e for special ability or q to pass.");
-        PlayerSelection=2;
         return OptionsforPick.get(PlayerSelection-1);
     }
     public void StartGameFlow (){
@@ -137,6 +138,11 @@ public class GameSystem implements Observer {
                 levels.add(f.getAbsolutePath());
             }
         }
+
+        for(String s:levels){
+            System.out.println( s);
+        }
+
         GameSystem g = new GameSystem(deterministicFlag,levels);
         g.StartGameFlow();
     }

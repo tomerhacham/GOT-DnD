@@ -26,7 +26,7 @@ public class Mage extends Player {
 
     @Override
     void levelUp() {
-        String lvlUpMsg="";
+        String lvlUpMsg=this.getName() + " LEVEL UP!"+System.lineSeparator();
             this.levelUpIsComing();
             manaPool = manaPool + (25 * getLevel());
             currMana = Math.min(currMana + (manaPool / 4), manaPool);
@@ -56,7 +56,7 @@ public class Mage extends Player {
            currMana = currMana - cost;
            Integer hits = 0;
            while (hits < hitTimes && !nearBy.isEmpty()){
-               Enemy victim = nearBy.get( GameSystem.randomGenerator.nextInt(nearBy.size()));
+               Enemy victim = nearBy.get( GameSystem.randomGenerator.nextInt(nearBy.size()-1));
                meleeCombat(victim);
                hits++;
            }

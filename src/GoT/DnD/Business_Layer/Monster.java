@@ -22,7 +22,7 @@ public class Monster extends Enemy{
             }
         } else {
             int randomMove = GameSystem.randomGenerator.nextInt(5);
-            if(randomMove>=0 && randomMove<=4){
+            if(randomMove>0 && randomMove<5){
             int legalSituation=Board.isLegalMove(this,randomMove);
             if(legalSituation==0){
                 this.Move(randomMove);

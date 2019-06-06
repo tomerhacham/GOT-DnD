@@ -17,7 +17,7 @@ public class Rogue extends Player {
 
     @Override
     void levelUp() {
-        String lvlUpMsg="";
+        String lvlUpMsg=this.getName() + " LEVEL UP!"+System.lineSeparator();
             currEnergy = 100;
             setAp(getAp() + (3 * getLevel()));
         lvlUpMsg=lvlUpMsg.concat("Level up: +"+(10 * getLevel()-1)+" Health, +"+((5 * getLevel()-1)+(3 * getLevel()))+" Attack, +"+(2 * getLevel()-1+getLevel())+" Defense,");

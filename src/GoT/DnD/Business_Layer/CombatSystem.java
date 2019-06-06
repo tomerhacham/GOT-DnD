@@ -21,7 +21,7 @@ class CombatSystem implements Observable {
         String message="";
         message=message.concat(attacker.getName()+" engaged in battle with "+defender.getName()+":"+System.lineSeparator());
         message=message.concat(attacker.toString()+System.lineSeparator());
-        message=message.concat(defender.toString()+System.lineSeparator());
+        message=message.concat(defender.toString()+System.lineSeparator())+System.lineSeparator();
         int attackRoll =  GameSystem.randomGenerator.nextInt(attacker.getAp());
         int defenderRoll =   GameSystem.randomGenerator.nextInt(defender.getDp());
         int dif = attackRoll-defenderRoll;

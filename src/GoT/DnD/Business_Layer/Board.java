@@ -25,7 +25,7 @@ public class Board {
 
     //Constructor
     public Board(String filename, Player Hero) {
-        this.Level = filename.charAt(filename.length()-5);
+        this.Level = filename.charAt(filename.length()-5)-'0';
         int x = 0;
         int y = 0;
         List<String> boardScheme = ReadText.readAllLines(filename);
@@ -62,21 +62,23 @@ public class Board {
     }
 
     public void gameTick() {
-        for(int i=1;i<GameUnits.size();i++){
+        for(int i=1;i<GameUnits.size();i++) {
             GameUnit gu = GameUnits.get(i);
-            Point prevPoint = new Point(gu.getPosition());
-                if(gu.gameTick())
-                {
-                    if(gu.isVisible()){
-                    board[prevPoint.x][prevPoint.y]=EMPTY;
-                    board[gu.getPosition().x][gu.getPosition().y]=gu.getTile();
-                    }
-                    else{
-                        board[prevPoint.x][prevPoint.y]=EMPTY;
-                        board[gu.getPosition().x][gu.getPosition().y]=EMPTY;
+            if (gu.getCurrHP() > 0) {
+                Point prevPoint = new Point(gu.getPosition());
+                if (gu.gameTick()) {
+                    if (gu.isVisible()) {
+                        board[prevPoint.x][prevPoint.y] = EMPTY;
+                        board[gu.getPosition().x][gu.getPosition().y] = gu.getTile();
+                    } else {
+                        board[prevPoint.x][prevPoint.y] = EMPTY;
+                        board[gu.getPosition().x][gu.getPosition().y] = EMPTY;
                     }
                 }
             }
+            UpdateAliveGameUnits();
+
+        }
         if(Hero.isVisible()){
             board[Hero.getPosition().x][Hero.getPosition().y]=Hero.getTile();}
         else{

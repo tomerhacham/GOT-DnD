@@ -21,15 +21,12 @@ public abstract class Player extends GameUnit implements Observable {
     }
 
     protected void levelUpIsComing() {
-        if (isLevelUp()) {
-            setXp(getXp() - (50 * level));
+            super.setXp(getXp() - (50 * level));
             level++;
             setHp(getHp() + (10 * level));
             setCurrHP(getHp());
             setAp(getAp() + (5 * level));
             setDp(getDp() + (2 * level));
-
-        }
     }
 
     public boolean isEnemy() {
@@ -74,8 +71,6 @@ public abstract class Player extends GameUnit implements Observable {
         if (isLevelUp()) {
             levelUpIsComing();
             levelUp();
-            notifyObserver(this.getName() + " LEVEL UP!");
-
         }
     }
     //region Observable implement

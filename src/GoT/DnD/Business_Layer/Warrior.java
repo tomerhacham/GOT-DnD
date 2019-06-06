@@ -17,7 +17,7 @@ public class Warrior extends Player {
 
     @Override
     void levelUp(){
-        String lvlUpMsg="";
+        String lvlUpMsg=this.getName() + " LEVEL UP!"+System.lineSeparator();
             this.levelUpIsComing();
             remaining = 0;
             setHp(getHp() + (5 * getLevel()));
@@ -35,7 +35,8 @@ public class Warrior extends Player {
         else {
             remaining = cooldown;
             setCurrHP(Math.min(getCurrHP() + (2 * getDp()), getHp()));
-            message= message.concat(this.getName()+" cast Heal");
+            message= message.concat(this.getName()+" cast Heal"+System.lineSeparator());
+            message=message.concat(this.toString());
         }
         notifyObserver(message);
     }
