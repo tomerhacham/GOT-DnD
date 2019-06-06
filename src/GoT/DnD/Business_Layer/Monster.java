@@ -1,7 +1,6 @@
 package GoT.DnD.Business_Layer;
 
 import java.awt.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Monster extends Enemy{
     private Integer vr;             //Vision range
@@ -22,7 +21,8 @@ public class Monster extends Enemy{
                 isMoved = chaseDown(dy, LEFT, RIGHT);
             }
         } else {
-            int randomMove = ThreadLocalRandom.current().nextInt(1, 5);
+            int randomMove = GameSystem.randomGenerator.nextInt(5);
+            if(randomMove>=0 && randomMove<=4){
             int legalSituation=Board.isLegalMove(this,randomMove);
             if(legalSituation==0){
                 this.Move(randomMove);
@@ -37,6 +37,7 @@ public class Monster extends Enemy{
                 else{
                     isMoved=false;
                 }
+            }
             }
         }
         return isMoved;

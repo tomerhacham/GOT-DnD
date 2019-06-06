@@ -22,8 +22,8 @@ class CombatSystem implements Observable {
         message=message.concat(attacker.getName()+" engaged in battle with "+defender.getName()+":"+System.lineSeparator());
         message=message.concat(attacker.toString()+System.lineSeparator());
         message=message.concat(defender.toString()+System.lineSeparator());
-        int attackRoll = ThreadLocalRandom.current().nextInt(0,attacker.getAp());
-        int defenderRoll = ThreadLocalRandom.current().nextInt(0,defender.getDp());
+        int attackRoll =  GameSystem.randomGenerator.nextInt(attacker.getAp());
+        int defenderRoll =   GameSystem.randomGenerator.nextInt(defender.getDp());
         int dif = attackRoll-defenderRoll;
         message=message.concat(attacker.getName()+" rolled "+attackRoll+" attack points."+System.lineSeparator());
         message=message.concat(defender.getName()+" rolled "+defenderRoll+" defense points."+System.lineSeparator());
@@ -44,8 +44,8 @@ class CombatSystem implements Observable {
         message=message.concat(defender.toString()+System.lineSeparator());
         for(Observer obs:observers){
             obs.update((String)message);
-        }
-        return isDead;
+            }
+            return isDead;
     }
     //region Observable implement
     @Override

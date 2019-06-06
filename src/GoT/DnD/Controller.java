@@ -5,16 +5,6 @@ import java.util.Scanner;
 
 public class Controller {
 
-/*    //Fields:
-    LinkedList<Observer> observers;
-
-    //Constructor
-    public Controller(){
-        observers=new LinkedList<Observer>();
-    }
-
- */
-
     public static int choosePlayer(){
         Scanner reader = new Scanner(System.in);
         int input;
@@ -37,26 +27,4 @@ public class Controller {
         return input;
     }
 
-
-/*
-    //region Observable implement
-    @Override
-    public void register(Observer observer) {
-
-    }
-
-    @Override
-    public void unregister(Observer observer) {
-
-    }
-
-    @Override
-    public void notifyObserver(Object message) {
-        for (Observer obs:observers){
-            obs.update((char)message);
-        }
-    }
-    //endregion
-
- */
 }

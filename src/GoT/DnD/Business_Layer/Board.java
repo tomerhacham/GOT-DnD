@@ -24,11 +24,11 @@ public class Board {
     static final Character HERO = '@';
 
     //Constructor
-    public Board(int level, Player Hero) {
-        this.Level = level;
+    public Board(String filename, Player Hero) {
+        this.Level = filename.charAt(filename.length()-5);
         int x = 0;
         int y = 0;
-        List<String> boardScheme = ReadText.readAllLines("level " + this.Level + ".txt");
+        List<String> boardScheme = ReadText.readAllLines(filename);
         board = new Character[boardScheme.size()][boardScheme.get(1).length()]; //Initialize board in the required dimension
         GameUnits = BoardSchemeParser.ParseScheme(boardScheme, Hero);
         this.Hero = (Player) GameUnits.getFirst();
