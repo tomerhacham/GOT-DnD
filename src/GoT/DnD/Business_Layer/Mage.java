@@ -56,8 +56,11 @@ public class Mage extends Player {
            currMana = currMana - cost;
            Integer hits = 0;
            while (hits < hitTimes && !nearBy.isEmpty()){
-               Enemy victim = nearBy.get( GameSystem.randomGenerator.nextInt(nearBy.size()-1));
-               meleeCombat(victim);
+               int randomSelection = GameSystem.randomGenerator.nextInt(nearBy.size()-1);
+               if(randomSelection<nearBy.size()) {
+                   Enemy victim = nearBy.get(randomSelection);
+                   meleeCombat(victim);
+               }
                hits++;
            }
        }

@@ -38,7 +38,7 @@ public class GameSystem implements Observer {
         this.deterministicMode=deterministicMode;
         actionReader=new ActionReader(deterministicMode);
         randomGenerator=new RandomGenerator(deterministicMode);
-        this.Hero=initialize();
+        this.Hero=initialize(deterministicMode);
         this.Hero.register(this);
         board = new Board(levelNames.get(0),Hero);
         CombatSystem combatSystem = new CombatSystem();
@@ -68,7 +68,6 @@ public class GameSystem implements Observer {
                     break;
             }
             board.gameTick();
-        System.out.println(board.Level+"  "+(levelNames.size()+1));
             if (board.getGameUnits().size() == 1 && Hero.getCurrHP() > 0) {//all the monster are dead
                 if (board.Level < levelNames.size()) {
                     update("Good Job, get ready for the next mission!");
@@ -96,7 +95,8 @@ public class GameSystem implements Observer {
     }
     //endregion
 
-    public Player initialize(){
+    public Player initialize(boolean deterministicMode){
+        int PlayerSelection=0;
         String OpenMessage="Select Player: "+System.lineSeparator();
         int index=1;
         for (Player player:OptionsforPick){
@@ -105,7 +105,12 @@ public class GameSystem implements Observer {
         }
 
         View.Display(OpenMessage);
-        int PlayerSelection = Controller.choosePlayer();
+        if(deterministicMode){
+            PlayerSelection = Integer.parseInt(actionReader.nextAction());
+        }
+        else{
+            PlayerSelection = Controller.choosePlayer();
+        }
         View.Display("You selected: "+System.lineSeparator()+OptionsforPick.get(PlayerSelection-1).toString());
         View.Display("Use w/s/a/d to move."+System.lineSeparator()+"Use e for special ability or q to pass.");
         return OptionsforPick.get(PlayerSelection-1);
@@ -118,6 +123,9 @@ public class GameSystem implements Observer {
     }
 
     public static void main(String[] args) {
+        args = new String[2];
+        args[0] = "C:\\University\\Semester B\\Object Oriented\\Object Oriented Assignment 3\\GOT-DnD\\src\\GoT\\DnD\\Persistent_Layer\\Levels";
+        args[1]="-D";
         List<String> levels = new LinkedList<>();
         boolean deterministicFlag=false;
 
@@ -137,10 +145,6 @@ public class GameSystem implements Observer {
             for(File f:root.listFiles()){
                 levels.add(f.getAbsolutePath());
             }
-        }
-
-        for(String s:levels){
-            System.out.println( s);
         }
 
         GameSystem g = new GameSystem(deterministicFlag,levels);
