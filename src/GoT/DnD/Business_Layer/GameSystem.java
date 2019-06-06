@@ -123,9 +123,9 @@ public class GameSystem implements Observer {
     }
 
     public static void main(String[] args) {
-        args = new String[2];
-        args[0] = "C:\\University\\Semester B\\Object Oriented\\Object Oriented Assignment 3\\GOT-DnD\\src\\GoT\\DnD\\Persistent_Layer\\Levels";
-        args[1]="-D";
+    //    args = new String[2];
+    //    args[0] = System.getProperty("user.dir")+"\\src\\GoT\\DnD\\Persistent_Layer\\Levels";
+    //    args[1]="-D";
         List<String> levels = new LinkedList<>();
         boolean deterministicFlag=false;
 
@@ -141,7 +141,7 @@ public class GameSystem implements Observer {
             }
         }
         else{
-            File root = new File("C:\\University\\Semester B\\Object Oriented\\Object Oriented Assignment 3\\GOT-DnD\\src\\GoT\\DnD\\Persistent_Layer\\Levels");
+            File root = new File(System.getProperty("user.dir")+"\\src\\GoT\\DnD\\Persistent_Layer\\Levels");
             for(File f:root.listFiles()){
                 levels.add(f.getAbsolutePath());
             }

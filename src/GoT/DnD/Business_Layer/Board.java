@@ -77,7 +77,6 @@ public class Board {
                 }
             }
             UpdateAliveGameUnits();
-
         }
         if(Hero.isVisible()){
             board[Hero.getPosition().x][Hero.getPosition().y]=Hero.getTile();}
@@ -111,10 +110,6 @@ public class Board {
 
     public LinkedList<GameUnit> getGameUnits() {
         return GameUnits;
-    }
-
-    public static Double range(GameUnit gameunit1, GameUnit gameunit2) {
-        return gameunit1.getPosition().distance(gameunit2.getPosition());
     }
 
     public String BoardToDisplay() {

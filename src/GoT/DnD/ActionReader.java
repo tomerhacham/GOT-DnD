@@ -10,9 +10,9 @@ import java.util.List;
 
 public class ActionReader {
     //Fields
-     boolean deterministicMode=false;
-     List<String> determindAction=null;
-     Iterator<String> iter=null;
+     private boolean deterministicMode=false;
+     private List<String> determindAction=null;
+     private Iterator<String> iter=null;
 
     public ActionReader(boolean deterministicMode){
         this.deterministicMode=deterministicMode;
