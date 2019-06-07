@@ -1,6 +1,4 @@
-package GoT.DnD.Business_Layer;
-
-import GoT.DnD.Observer;
+package GoT_DnD.Business_Layer;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -57,20 +55,8 @@ public class Rogue extends Player {
     }
 
     //Getters & setters
-    public Integer getCost() {
-        return cost;
-    }
-
-    public void setCost(Integer cost) {
-        this.cost = cost;
-    }
-
     public Integer getCurrEnergy() {
         return currEnergy;
-    }
-
-    public void setCurrEnergy(Integer currEnergy) {
-        this.currEnergy = currEnergy;
     }
 
     @Override

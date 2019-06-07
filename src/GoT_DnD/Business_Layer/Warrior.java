@@ -1,6 +1,4 @@
-package GoT.DnD.Business_Layer;
-
-import GoT.DnD.Observer;
+package GoT_DnD.Business_Layer;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -52,7 +50,7 @@ public class Warrior extends Player {
         return getName() + "        Health: " + getCurrHP() + "        Attack damage: " + getAp() + "        Defense: " + getDp() + "        Level: " + getLevel() + "        Experience: " + getXp() + "/" + 50*getLevel() + "        Ability cooldown: " + getCooldown();
     }
 
-    public Integer getCooldown() {
+    private Integer getCooldown() {
         return cooldown;
     }
 }

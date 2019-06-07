@@ -1,4 +1,4 @@
-package GoT.DnD.Business_Layer;
+package GoT_DnD.Business_Layer;
 
 import java.awt.*;
 
@@ -33,7 +33,6 @@ public abstract class GameUnit {
     abstract boolean gameTick();
     abstract boolean isEnemy();
     abstract boolean stepOn(GameUnit gu);
-    public abstract String GameUnitType();
 
 
     //Methods

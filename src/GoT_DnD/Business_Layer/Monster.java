@@ -1,4 +1,4 @@
-package GoT.DnD.Business_Layer;
+package GoT_DnD.Business_Layer;
 
 import java.awt.*;
 
@@ -84,15 +84,4 @@ public class Monster extends Enemy{
         }
         return isMoved;
     }
-
-    //Getter & setter
-    public Integer getVr() {
-        return vr;
-    }
-
-    public void setVr(Integer vr) {
-        this.vr = vr;
-    }
-
-    public String GameUnitType(){return "Monster"; }
 }

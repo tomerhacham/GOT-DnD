@@ -1,8 +1,8 @@
-package GoT.DnD.Business_Layer;
-import GoT.DnD.*;
+package GoT_DnD.Business_Layer;
+import GoT_DnD.*;
+
 import java.awt.*;
 import java.io.File;
-import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,8 +11,7 @@ public class GameSystem implements Observer {
     private Board board;
     private Player Hero;
     private LinkedList<Player> OptionsforPick;
-    private boolean deterministicMode = false;
-    public static ActionReader actionReader;
+    private static ActionReader actionReader;
     public static RandomGenerator randomGenerator;
     public List<String> levelNames;
 
@@ -35,7 +34,6 @@ public class GameSystem implements Observer {
         OptionsforPick.add(new Rogue("Bronn",250,35,3,new Point(0,0),60,'@'));
         //endregion
         this.levelNames=levelNames;
-        this.deterministicMode=deterministicMode;
         actionReader=new ActionReader(deterministicMode);
         randomGenerator=new RandomGenerator(deterministicMode);
         this.Hero=initialize(deterministicMode);
@@ -69,7 +67,7 @@ public class GameSystem implements Observer {
             }
             board.gameTick();
             if (board.getGameUnits().size() == 1 && Hero.getCurrHP() > 0) {//all the monster are dead
-                if (board.Level < levelNames.size()) {
+                if (board.getLevel() < levelNames.size()) {
                     update("Good Job, get ready for the next mission!");
                     this.LoadLevel();
                 } else {
@@ -85,7 +83,7 @@ public class GameSystem implements Observer {
     }
 
     private void LoadLevel(){
-        this.board= new Board("level "+board.Level+1+".txt",Hero);
+        this.board= new Board("level "+board.getLevel()+1+".txt",Hero);
 
     }
     //region Observer implement
@@ -124,7 +122,7 @@ public class GameSystem implements Observer {
 
     public static void main(String[] args) {
     //    args = new String[2];
-    //    args[0] = System.getProperty("user.dir")+"\\src\\GoT\\DnD\\Persistent_Layer\\Levels";
+    //    args[0] = System.getProperty("user.dir")+"\\src\\GoT_DnD\\Persistent_Layer\\Levels";
     //    args[1]="-D";
         List<String> levels = new LinkedList<>();
         boolean deterministicFlag=false;
@@ -141,7 +139,7 @@ public class GameSystem implements Observer {
             }
         }
         else{
-            File root = new File(System.getProperty("user.dir")+"\\src\\GoT\\DnD\\Persistent_Layer\\Levels");
+            File root = new File(System.getProperty("user.dir")+"\\src\\GoT_DnD\\Persistent_Layer\\Levels");
             for(File f:root.listFiles()){
                 levels.add(f.getAbsolutePath());
             }

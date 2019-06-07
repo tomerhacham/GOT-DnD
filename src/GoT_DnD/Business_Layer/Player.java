@@ -1,14 +1,14 @@
-package GoT.DnD.Business_Layer;
+package GoT_DnD.Business_Layer;
 
-import GoT.DnD.Observable;
-import GoT.DnD.Observer;
+import GoT_DnD.Observable;
+import GoT_DnD.Observer;
 
 import java.awt.*;
 import java.util.LinkedList;
 
 public abstract class Player extends GameUnit implements Observable {
     private Integer level;      //Player's level
-    protected LinkedList<Observer> observers;
+    private LinkedList<Observer> observers;
 
     public Player(String name, Integer hp, Integer ap, Integer dp, Point position, char tile) {
         super(name, hp, ap, dp, position, 0, tile);
@@ -16,27 +16,23 @@ public abstract class Player extends GameUnit implements Observable {
         observers = new LinkedList<>();
     }
 
-    protected boolean isLevelUp() {
-        return (getXp() >= (level * 50));
-    }
+    //Abstract methods
+    abstract void levelUp();
+    abstract void castSpecialAbility(LinkedList<GameUnit> enemies);
 
-    protected void levelUpIsComing() {
-            super.setXp(getXp() - (50 * level));
-            level++;
-            setHp(getHp() + (10 * level));
-            setCurrHP(getHp());
-            setAp(getAp() + (5 * level));
-            setDp(getDp() + (2 * level));
+    //Methods
+    void levelUpIsComing() {
+        super.setXp(getXp() - (50 * level));
+        level++;
+        setHp(getHp() + (10 * level));
+        setCurrHP(getHp());
+        setAp(getAp() + (5 * level));
+        setDp(getDp() + (2 * level));
     }
 
     public boolean isEnemy() {
         return false;
     }
-
-    //Abstract methods
-    abstract void levelUp();
-
-    abstract void castSpecialAbility(LinkedList<GameUnit> enemies);
 
     public boolean stepOn(GameUnit enemy) {
         if (enemy.isEnemy()) {
@@ -46,11 +42,11 @@ public abstract class Player extends GameUnit implements Observable {
         }
     }
 
-    public String GameUnitType() {
-        return "Player";
+    //Getters & setters
+    private boolean isLevelUp() {
+        return (getXp() >= (level * 50));
     }
 
-    //Getters & setters
     public void setCurrHP(Integer currHP) {
         super.setCurrHP(currHP);
         if (currHP <= 0) {
@@ -62,10 +58,6 @@ public abstract class Player extends GameUnit implements Observable {
         return level;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
-
     public void setXp(Integer xp) {
         super.setXp(xp);
         if (isLevelUp()) {
@@ -73,6 +65,7 @@ public abstract class Player extends GameUnit implements Observable {
             levelUp();
         }
     }
+
     //region Observable implement
     @Override
     public void register(Observer observer) {

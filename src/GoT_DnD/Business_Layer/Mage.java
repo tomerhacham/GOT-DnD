@@ -1,10 +1,7 @@
-package GoT.DnD.Business_Layer;
-
-import GoT.DnD.Observer;
+package GoT_DnD.Business_Layer;
 
 import java.awt.*;
 import java.util.LinkedList;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Mage extends Player {
     private Integer spellPower;
@@ -74,52 +71,16 @@ public class Mage extends Player {
 
 
     //Getters & setters
-    public Integer getSpellPower() {
+    private Integer getSpellPower() {
         return spellPower;
     }
 
-    public void setSpellPower(Integer spellPower) {
-        this.spellPower = spellPower;
-    }
-
-    public Integer getManaPool() {
+    private Integer getManaPool() {
         return manaPool;
     }
 
-    public void setManaPool(Integer manaPool) {
-        this.manaPool = manaPool;
-    }
-
-    public Integer getCurrMana() {
+    private Integer getCurrMana() {
         return currMana;
-    }
-
-    public void setCurrMana(Integer currMana) {
-        this.currMana = currMana;
-    }
-
-    public Integer getCost() {
-        return cost;
-    }
-
-    public void setCost(Integer cost) {
-        this.cost = cost;
-    }
-
-    public Integer getHitTimes() {
-        return hitTimes;
-    }
-
-    public void setHitTimes(Integer hitTimes) {
-        this.hitTimes = hitTimes;
-    }
-
-    public Integer getRange() {
-        return range;
-    }
-
-    public void setRange(Integer range) {
-        this.range = range;
     }
 
     @Override
