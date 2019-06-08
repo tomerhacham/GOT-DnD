@@ -1,8 +1,11 @@
 package GoT_DnD.Business_Layer;
 import GoT_DnD.*;
+import GoT_DnD.Business_Layer.GameUnits.Mage;
+import GoT_DnD.Business_Layer.GameUnits.Player;
+import GoT_DnD.Business_Layer.GameUnits.Rogue;
+import GoT_DnD.Business_Layer.GameUnits.Warrior;
 
 import java.awt.*;
-import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,7 +29,7 @@ public class GameSystem implements Observer {
 
         //region Player Options
         OptionsforPick=new LinkedList<>();
-        OptionsforPick.add(new Warrior ("Jon Snow",300, 30,4,new Point(0,0),6,'@'));
+        OptionsforPick.add(new Warrior("Jon Snow",300, 30,4,new Point(0,0),6,'@'));
         OptionsforPick.add(new Warrior ("The Hound",400, 20,6,new Point(0,0),4,'@'));
         OptionsforPick.add(new Mage("Melisandre",160,10,1,new Point(0,0),40,300,30,5,6,'@'));
         OptionsforPick.add(new Mage("Thoros of Myr",250,25,3,new Point(0,0),15,150,50,3,3,'@'));
@@ -43,7 +46,7 @@ public class GameSystem implements Observer {
         combatSystem.register(this);
     }
     //region Methods
-    public void gameTick(){
+    private void gameTick(){
         Hero.gameTick();
             String action = actionReader.nextAction();
             switch (action) {
@@ -78,7 +81,7 @@ public class GameSystem implements Observer {
             update(board.BoardToDisplay());
     }
 
-    public void castSpecialAbility(){
+    private void castSpecialAbility(){
         board.castSpecialAbility();
     }
 
@@ -93,7 +96,7 @@ public class GameSystem implements Observer {
     }
     //endregion
 
-    public Player initialize(boolean deterministicMode){
+    private Player initialize(boolean deterministicMode){
         int PlayerSelection=0;
         String OpenMessage="Select Player: "+System.lineSeparator();
         int index=1;
@@ -113,40 +116,12 @@ public class GameSystem implements Observer {
         View.Display("Use w/s/a/d to move."+System.lineSeparator()+"Use e for special ability or q to pass.");
         return OptionsforPick.get(PlayerSelection-1);
     }
+
     public void StartGameFlow (){
         update(board.BoardToDisplay());
         while (Hero.getCurrHP() > 0){
             gameTick();
         }
-    }
-
-    public static void main(String[] args) {
-    //    args = new String[2];
-    //    args[0] = System.getProperty("user.dir")+"\\src\\GoT_DnD\\Persistent_Layer\\Levels";
-    //    args[1]="-D";
-        List<String> levels = new LinkedList<>();
-        boolean deterministicFlag=false;
-
-        if(args.length!=0){//some args has been pass
-
-            File root = new File(args[0]); //path for level files
-            for(File f:root.listFiles()){
-                levels.add(f.getAbsolutePath());
-            }
-
-            if(args.length>1 && args[1].equals("-D")){//deterministic flag was raised
-                deterministicFlag=true;
-            }
-        }
-        else{
-            File root = new File(System.getProperty("user.dir")+"\\src\\GoT_DnD\\Persistent_Layer\\Levels");
-            for(File f:root.listFiles()){
-                levels.add(f.getAbsolutePath());
-            }
-        }
-
-        GameSystem g = new GameSystem(deterministicFlag,levels);
-        g.StartGameFlow();
     }
 }
 

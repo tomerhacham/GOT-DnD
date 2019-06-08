@@ -1,4 +1,6 @@
-package GoT_DnD.Business_Layer;
+package GoT_DnD.Business_Layer.GameUnits;
+
+import GoT_DnD.Business_Layer.GameSystem;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -22,7 +24,7 @@ public class Mage extends Player {
     }
 
     @Override
-    void levelUp() {
+    public void levelUp() {
         String lvlUpMsg=this.getName() + " LEVEL UP!"+System.lineSeparator();
             this.levelUpIsComing();
             manaPool = manaPool + (25 * getLevel());
@@ -33,7 +35,7 @@ public class Mage extends Player {
     }
 
     @Override
-    void castSpecialAbility(LinkedList<GameUnit> enemies1) {
+    public void castSpecialAbility(LinkedList<GameUnit> enemies1) {
         String message="";
         LinkedList<GameUnit> enemies=new LinkedList<>(enemies1);
         enemies.removeFirst();              //Remove hero himself from list

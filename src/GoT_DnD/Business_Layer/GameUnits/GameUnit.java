@@ -1,4 +1,6 @@
-package GoT_DnD.Business_Layer;
+package GoT_DnD.Business_Layer.GameUnits;
+
+import GoT_DnD.Business_Layer.CombatSystem;
 
 import java.awt.*;
 
@@ -30,9 +32,9 @@ public abstract class GameUnit {
     }
 
     //Abstract methods
-    abstract boolean gameTick();
-    abstract boolean isEnemy();
-    abstract boolean stepOn(GameUnit gu);
+    public abstract boolean gameTick();
+    public abstract boolean isEnemy();
+    public abstract boolean stepOn(GameUnit gu);
 
 
     //Methods

@@ -1,4 +1,4 @@
-package GoT_DnD.Business_Layer;
+package GoT_DnD.Business_Layer.GameUnits;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -14,7 +14,7 @@ public class Rogue extends Player {
     }
 
     @Override
-    void levelUp() {
+    public void levelUp() {
         String lvlUpMsg=this.getName() + " LEVEL UP!"+System.lineSeparator();
             currEnergy = 100;
             setAp(getAp() + (3 * getLevel()));
@@ -23,7 +23,7 @@ public class Rogue extends Player {
     }
 
     @Override
-    void castSpecialAbility(LinkedList<GameUnit> enemies1) {
+    public void castSpecialAbility(LinkedList<GameUnit> enemies1) {
         LinkedList<GameUnit> enemies=new LinkedList<>(enemies1);
         enemies.removeFirst();
         String message="";

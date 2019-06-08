@@ -1,4 +1,4 @@
-package GoT_DnD.Business_Layer;
+package GoT_DnD.Business_Layer.GameUnits;
 
 import GoT_DnD.Observable;
 import GoT_DnD.Observer;
@@ -17,8 +17,8 @@ public abstract class Player extends GameUnit implements Observable {
     }
 
     //Abstract methods
-    abstract void levelUp();
-    abstract void castSpecialAbility(LinkedList<GameUnit> enemies);
+    public abstract void levelUp();
+    public abstract void castSpecialAbility(LinkedList<GameUnit> enemies);
 
     //Methods
     void levelUpIsComing() {

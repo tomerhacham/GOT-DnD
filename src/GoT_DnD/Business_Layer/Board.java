@@ -1,5 +1,7 @@
 package GoT_DnD.Business_Layer;
 
+import GoT_DnD.Business_Layer.GameUnits.GameUnit;
+import GoT_DnD.Business_Layer.GameUnits.Player;
 import GoT_DnD.Persistent_Layer.ReadText;
 
 import java.awt.*;

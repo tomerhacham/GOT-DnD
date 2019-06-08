@@ -1,4 +1,7 @@
-package GoT_DnD.Business_Layer;
+package GoT_DnD.Business_Layer.GameUnits;
+
+import GoT_DnD.Business_Layer.Board;
+import GoT_DnD.Business_Layer.GameSystem;
 
 import java.awt.*;
 
@@ -23,7 +26,7 @@ public class Monster extends Enemy{
         } else {
             int randomMove = GameSystem.randomGenerator.nextInt(5);
             if(randomMove>0 && randomMove<5){
-            int legalSituation=Board.isLegalMove(this,randomMove);
+            int legalSituation= Board.isLegalMove(this,randomMove);
             if(legalSituation==0){
                 this.Move(randomMove);
                 isMoved=true;

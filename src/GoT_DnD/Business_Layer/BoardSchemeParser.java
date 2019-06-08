@@ -1,5 +1,9 @@
 package GoT_DnD.Business_Layer;
 
+import GoT_DnD.Business_Layer.GameUnits.GameUnit;
+import GoT_DnD.Business_Layer.GameUnits.Monster;
+import GoT_DnD.Business_Layer.GameUnits.Trap;
+
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,7 +18,7 @@ public class BoardSchemeParser {
      * @param Hero the Hero object to relocate on the board by the spawn point (@ char location)
      * @return list of all the Gameunits of the board where the Hero object is the First element of the list
      */
-    public static LinkedList<GameUnit> ParseScheme(List<String> boardScheme,GameUnit Hero){
+    public static LinkedList<GameUnit> ParseScheme(List<String> boardScheme, GameUnit Hero){
         LinkedList<GameUnit> GameUnits = new LinkedList<GameUnit>();
         int x=0,y=0;
         for (String line:boardScheme) {

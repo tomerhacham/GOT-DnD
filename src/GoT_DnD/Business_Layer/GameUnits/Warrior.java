@@ -1,4 +1,4 @@
-package GoT_DnD.Business_Layer;
+package GoT_DnD.Business_Layer.GameUnits;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -14,7 +14,7 @@ public class Warrior extends Player {
     }
 
     @Override
-    void levelUp(){
+    public void levelUp(){
         String lvlUpMsg=this.getName() + " LEVEL UP!"+System.lineSeparator();
             this.levelUpIsComing();
             remaining = 0;
@@ -25,7 +25,7 @@ public class Warrior extends Player {
     }
 
     @Override
-    void castSpecialAbility(LinkedList<GameUnit> enemies) {
+    public void castSpecialAbility(LinkedList<GameUnit> enemies) {
         String message="";
         if (remaining > 0){
             message= message.concat(this.getName()+" tried to cast Heal, but there is a cool-down: "+ remaining);

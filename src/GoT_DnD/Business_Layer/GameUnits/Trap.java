@@ -1,4 +1,6 @@
-package GoT_DnD.Business_Layer;
+package GoT_DnD.Business_Layer.GameUnits;
+
+import GoT_DnD.Business_Layer.Board;
 
 import java.awt.*;
 import java.util.LinkedList;

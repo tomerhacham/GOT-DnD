@@ -1,10 +1,11 @@
 package GoT_DnD.Business_Layer;
 
+import GoT_DnD.Business_Layer.GameUnits.GameUnit;
 import GoT_DnD.Observable;
 import GoT_DnD.Observer;
 import java.util.LinkedList;
 
-class CombatSystem implements Observable {
+public class CombatSystem implements Observable {
     //Fields:
     private static LinkedList<Observer> observers=new LinkedList<>();
 
