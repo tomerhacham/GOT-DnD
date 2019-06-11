@@ -2,6 +2,7 @@ package GoT_DnD.Business_Layer;
 
 import GoT_DnD.Business_Layer.GameUnits.Player;
 import GoT_DnD.Business_Layer.GameUnits.Warrior;
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -49,5 +50,14 @@ class BoardTest {
 
     @Test
     void getEmptyPlaces() {
+        //the board we built have 30 empty places
+        Assert.assertTrue(board.getEmptyPlaces().size()==30);
     }
+
+    @Test
+    void isLegalMove(){
+        Assert.assertTrue(Board.isLegalMove(hero,LEFT)==1);//hitting wall at this board layout
+        Assert.assertTrue(Board.isLegalMove(hero,UP)==0);//supposed to be empty
+    }
+
 }

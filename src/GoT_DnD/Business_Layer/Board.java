@@ -88,7 +88,6 @@ public class Board {
         Hero.castSpecialAbility(GameUnits);
     }
 
-
     public static int isLegalMove(GameUnit gameUnit, int move) {//maybe we need to get the gameunit that tries to preform the move
         Point currLocation = new Point(gameUnit.getPosition());
         Point destination = getPointByDirection(gameUnit.getPosition(),move);
