@@ -14,6 +14,7 @@ public class Board {
     private int Level;
     private static Character[][] board;
     private static LinkedList<GameUnit> GameUnits;
+
     private Player Hero;
 
     private static final Character EMPTY = '.';
@@ -173,6 +174,9 @@ public class Board {
                 break;
             }
     return destination;
+    }
+    public Player getHero() {
+        return Hero;
     }
 
     public int getLevel() {
