@@ -2,13 +2,11 @@ package GoT_DnD.Business_Layer;
 
 import GoT_DnD.Business_Layer.GameUnits.Player;
 import GoT_DnD.Business_Layer.GameUnits.Warrior;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
     //Fields:
@@ -17,9 +15,9 @@ class BoardTest {
     private static final int RIGHT = 3;
     private static final int LEFT = 4;
 
-    Board board=null;
-    Player hero=null;
-    String DemoLevelPath = "test Level.txt";
+    private Board board=null;
+    private Player hero=null;
+    private String DemoLevelPath = "test_Level.txt";
 
     @BeforeEach
     void setUp() {
@@ -33,31 +31,32 @@ class BoardTest {
         Point currLocation = new Point (board.getHero().getPosition());
         board.getHero();
         board.MoveHero(UP);
-        assertEquals(board.getHero().getPosition().x, currLocation.x-1);
-        assertEquals(board.getHero().getPosition().y,currLocation.y);
+        Assertions.assertEquals(board.getHero().getPosition().x, currLocation.x-1);
+        Assertions.assertEquals(board.getHero().getPosition().y,currLocation.y);
 
         board.MoveHero(RIGHT);
-        assertEquals(board.getHero().getPosition().x, currLocation.x-1);
-        assertEquals(board.getHero().getPosition().y,currLocation.y+1);
+        Assertions.assertEquals(board.getHero().getPosition().x, currLocation.x-1);
+        Assertions.assertEquals(board.getHero().getPosition().y,currLocation.y+1);
 
         board.MoveHero(LEFT);
-        assertEquals(board.getHero().getPosition().x, currLocation.x-1);
-        assertEquals(board.getHero().getPosition().y,currLocation.y);
+        Assertions.assertEquals(board.getHero().getPosition().x, currLocation.x-1);
+        Assertions.assertEquals(board.getHero().getPosition().y,currLocation.y);
 
         board.MoveHero(DOWN);
-        assertEquals(board.getHero().getPosition(),currLocation); //supposed to be the same  point
+        Assertions.assertEquals(board.getHero().getPosition(),currLocation); //supposed to be the same  point
     }
 
     @Test
     void getEmptyPlaces() {
+
         //the board we built have 30 empty places
-        Assert.assertTrue(board.getEmptyPlaces().size()==30);
+        Assertions.assertEquals(30, Board.getEmptyPlaces().size());
     }
 
     @Test
     void isLegalMove(){
-        Assert.assertTrue(Board.isLegalMove(hero,LEFT)==1);//hitting wall at this board layout
-        Assert.assertTrue(Board.isLegalMove(hero,UP)==0);//supposed to be empty
+        Assertions.assertEquals(1, Board.isLegalMove(hero, LEFT));//hitting wall at this board layout
+        Assertions.assertEquals(0, Board.isLegalMove(hero, UP));//supposed to be empty
     }
 
 }

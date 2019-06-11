@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="GOT-DnD:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/GOT_DnD_jar</output-path>
+    <root id="archive" name="GOT-DnD.jar">
+      <element id="module-output" name="GOT-DnD" />
+      <element id="module-test-output" name="GOT-DnD" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.5.0-RC1/junit-jupiter-api-5.5.0-RC1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.5.0-RC1/junit-platform-commons-1.5.0-RC1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$APPLICATION_HOME_DIR$/lib/groovy-all-2.4.15.jar" path-in-jar="/" />
+      <element id="module-source" name="GOT-DnD" />
+      <element id="file-copy" path="$PROJECT_DIR$/test_Level.txt" />
+    </root>
+  </artifact>
+</component>

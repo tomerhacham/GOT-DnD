@@ -7,9 +7,6 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        //    args = new String[2];
-        //    args[0] = System.getProperty("user.dir")+"\\src\\GoT_DnD\\Persistent_Layer\\Levels";
-        //    args[1]="-D";
         List<String> levels = new LinkedList<>();
         boolean deterministicFlag = false;
 
