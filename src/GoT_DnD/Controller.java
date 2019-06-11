@@ -1,6 +1,5 @@
-package GoT.DnD;
+package GoT_DnD;
 
-import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Controller {

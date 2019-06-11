@@ -1,9 +1,7 @@
-package GoT.DnD;
+package GoT_DnD;
 
-import GoT.DnD.Persistent_Layer.ReadText;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import GoT_DnD.Persistent_Layer.ReadText;
 
-import java.io.EOFException;
 import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
@@ -11,15 +9,14 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomGenerator {
 
-     boolean deterministicMode=false;
-     List<String> random_number_list=null;
-     Iterator<String> iter=null;
+    private boolean deterministicMode;
+    private Iterator<String> iter=null;
 
     public RandomGenerator(boolean deterministicMode) {
         this.deterministicMode=deterministicMode;
         if(deterministicMode){
-            random_number_list= ReadText.readAllLines(Paths.get("random_numbers.txt"));
-            iter=random_number_list.iterator();
+            List<String> random_number_list = ReadText.readAllLines(Paths.get("random_numbers.txt"));
+            iter= random_number_list.iterator();
         }
 
     }

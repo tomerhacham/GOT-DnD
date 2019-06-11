@@ -1,24 +1,21 @@
-package GoT.DnD;
+package GoT_DnD;
 
-import GoT.DnD.Persistent_Layer.ReadText;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import GoT_DnD.Persistent_Layer.ReadText;
 
-import java.io.EOFException;
 import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 
 public class ActionReader {
     //Fields
-     boolean deterministicMode=false;
-     List<String> determindAction=null;
-     Iterator<String> iter=null;
+    private boolean deterministicMode;
+    private Iterator<String> iter=null;
 
     public ActionReader(boolean deterministicMode){
         this.deterministicMode=deterministicMode;
         if(deterministicMode){
-            determindAction= ReadText.readAllLines(Paths.get("user_actions.txt"));
-            iter=determindAction.iterator();
+            List<String> determindAction = ReadText.readAllLines(Paths.get("user_actions.txt"));
+            iter= determindAction.iterator();
         }
 
     }

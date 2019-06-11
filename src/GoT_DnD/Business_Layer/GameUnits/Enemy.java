@@ -1,4 +1,4 @@
-package GoT.DnD.Business_Layer;
+package GoT_DnD.Business_Layer.GameUnits;
 
 import java.awt.*;
 

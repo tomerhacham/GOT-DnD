@@ -1,27 +1,24 @@
-package GoT.DnD.Business_Layer;
+package GoT_DnD.Business_Layer;
 
-import GoT.DnD.Observable;
-import GoT.DnD.Observer;
-import GoT.DnD.Persistent_Layer.ReadText;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-import sun.awt.image.ImageWatched;
+import GoT_DnD.Business_Layer.GameUnits.GameUnit;
+import GoT_DnD.Business_Layer.GameUnits.Player;
+import GoT_DnD.Persistent_Layer.ReadText;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Board {
 
     //Fields
-    int Level;
+    private int Level;
     private static Character[][] board;
     private static LinkedList<GameUnit> GameUnits;
-    Player Hero;
+    private Player Hero;
 
-    static final Character EMPTY = '.';
-    static final Character WALL = '#';
-    static final Character HERO = '@';
+    private static final Character EMPTY = '.';
+    private static final Character WALL = '#';
+    private static final Character HERO = '@';
 
     //Constructor
     public Board(String filename, Player Hero) {
@@ -77,7 +74,6 @@ public class Board {
                 }
             }
             UpdateAliveGameUnits();
-
         }
         if(Hero.isVisible()){
             board[Hero.getPosition().x][Hero.getPosition().y]=Hero.getTile();}
@@ -111,10 +107,6 @@ public class Board {
 
     public LinkedList<GameUnit> getGameUnits() {
         return GameUnits;
-    }
-
-    public static Double range(GameUnit gameunit1, GameUnit gameunit2) {
-        return gameunit1.getPosition().distance(gameunit2.getPosition());
     }
 
     public String BoardToDisplay() {
@@ -182,8 +174,14 @@ public class Board {
             }
     return destination;
     }
-}
+
+    public int getLevel() {
+        return Level;
+    }
+
     //endregion
+}
+
 
 
 

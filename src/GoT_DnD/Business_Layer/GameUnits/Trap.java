@@ -1,4 +1,6 @@
-package GoT.DnD.Business_Layer;
+package GoT_DnD.Business_Layer.GameUnits;
+
+import GoT_DnD.Business_Layer.Board;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -52,7 +54,4 @@ public class Trap extends Enemy{
         return  isMoved;
     }
 
-    //Getters & setters
-
-    public String GameUnitType(){return "Trap"; }
 }

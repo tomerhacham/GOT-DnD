@@ -1,11 +1,11 @@
-package GoT.DnD.Business_Layer;
+package GoT_DnD.Business_Layer;
 
-import GoT.DnD.Observable;
-import GoT.DnD.Observer;
+import GoT_DnD.Business_Layer.GameUnits.GameUnit;
+import GoT_DnD.Observable;
+import GoT_DnD.Observer;
 import java.util.LinkedList;
-import java.util.concurrent.ThreadLocalRandom;
 
-class CombatSystem implements Observable {
+public class CombatSystem implements Observable {
     //Fields:
     private static LinkedList<Observer> observers=new LinkedList<>();
 

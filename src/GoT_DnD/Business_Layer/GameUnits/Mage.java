@@ -1,10 +1,9 @@
-package GoT.DnD.Business_Layer;
+package GoT_DnD.Business_Layer.GameUnits;
 
-import GoT.DnD.Observer;
+import GoT_DnD.Business_Layer.GameSystem;
 
 import java.awt.*;
 import java.util.LinkedList;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Mage extends Player {
     private Integer spellPower;
@@ -25,7 +24,7 @@ public class Mage extends Player {
     }
 
     @Override
-    void levelUp() {
+    public void levelUp() {
         String lvlUpMsg=this.getName() + " LEVEL UP!"+System.lineSeparator();
             this.levelUpIsComing();
             manaPool = manaPool + (25 * getLevel());
@@ -36,7 +35,7 @@ public class Mage extends Player {
     }
 
     @Override
-    void castSpecialAbility(LinkedList<GameUnit> enemies1) {
+    public void castSpecialAbility(LinkedList<GameUnit> enemies1) {
         String message="";
         LinkedList<GameUnit> enemies=new LinkedList<>(enemies1);
         enemies.removeFirst();              //Remove hero himself from list
@@ -74,52 +73,16 @@ public class Mage extends Player {
 
 
     //Getters & setters
-    public Integer getSpellPower() {
+    private Integer getSpellPower() {
         return spellPower;
     }
 
-    public void setSpellPower(Integer spellPower) {
-        this.spellPower = spellPower;
-    }
-
-    public Integer getManaPool() {
+    private Integer getManaPool() {
         return manaPool;
     }
 
-    public void setManaPool(Integer manaPool) {
-        this.manaPool = manaPool;
-    }
-
-    public Integer getCurrMana() {
+    private Integer getCurrMana() {
         return currMana;
-    }
-
-    public void setCurrMana(Integer currMana) {
-        this.currMana = currMana;
-    }
-
-    public Integer getCost() {
-        return cost;
-    }
-
-    public void setCost(Integer cost) {
-        this.cost = cost;
-    }
-
-    public Integer getHitTimes() {
-        return hitTimes;
-    }
-
-    public void setHitTimes(Integer hitTimes) {
-        this.hitTimes = hitTimes;
-    }
-
-    public Integer getRange() {
-        return range;
-    }
-
-    public void setRange(Integer range) {
-        this.range = range;
     }
 
     @Override
