@@ -86,7 +86,8 @@ public class GameSystem implements Observer {
     }
 
     private void LoadLevel(){
-        this.board= new Board("level "+board.getLevel()+1+".txt",Hero);
+     //   board.setLevel(board.getLevel() + 1);
+        this.board= new Board(levelNames.get(board.getLevel()),Hero);
 
     }
     //region Observer implement

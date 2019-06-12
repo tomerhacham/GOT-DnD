@@ -182,6 +182,10 @@ public class Board {
         return Level;
     }
 
+    public void setLevel(int level){
+        this.Level = level;
+    }
+
     //endregion
 }
 

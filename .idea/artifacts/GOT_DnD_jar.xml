@@ -10,7 +10,9 @@
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.5.0-RC1/junit-platform-commons-1.5.0-RC1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$APPLICATION_HOME_DIR$/lib/groovy-all-2.4.15.jar" path-in-jar="/" />
       <element id="module-source" name="GOT-DnD" />
+      <element id="dir-copy" path="$PROJECT_DIR$/Tests" />
       <element id="file-copy" path="$PROJECT_DIR$/test_Level.txt" />
+      <element id="file-copy" path="$PROJECT_DIR$/Tests/GoT_DnD/Business_Layer/BoardTest.java" />
     </root>
   </artifact>
 </component>
